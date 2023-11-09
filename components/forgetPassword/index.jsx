@@ -39,15 +39,12 @@ const ForgetPassword = () => {
                         type="email"
                         autoComplete="email"
                         required
-                        className="bg-transparent w-full h-full pl-10 outline-none focus:ring-2 focus:ring-blue-600 text-black rounded-lg"
+                        className="bg-transparent group w-full h-full flex pl-10 outline-none focus:ring-2 focus:ring-blue-600 text-black rounded-md"
                         placeholder="Correo electrónico"
                         value={formData.email}
                         onChange={handleChange}
                     />
                 </div>
-
-
-
 
                 <div className="mt-2 flex items-center">
                     <Link href="/login" className="text-sm mt-1">Regresar a la pagina anterior</Link>
@@ -58,7 +55,7 @@ const ForgetPassword = () => {
                 </div>
 
             </form>
-            {message && <p className="text-red-500">{message}</p>}
+            
 
         </div>
     );
