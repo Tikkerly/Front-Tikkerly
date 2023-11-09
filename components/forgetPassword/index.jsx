@@ -18,15 +18,15 @@ const ForgetPassword = () => {
             const response = await axios.post(USER_ROUTES.forgetPassword, { email: formData.email });
             setMessage('Email enviado')
         } catch (error) {
-            setMessage('No se ha podido enviar el email de recuperacion, revise los campos o intentelo mas tarde')
+            setMessage('No se ha podido enviar el email de recuperacion')
         }
 
     }
     return (
         <div className="">
-            <h1 className="text-4xl mb-5">Recuperar contraseña</h1>
+            <h1 className="text-4xl mb-5">Contraseña</h1>
             <form onSubmit={handleSubmit}>
-                <div className="relative w-64 h-10 bg-gray-200 rounded-lg mt-4">
+            <div className="relative w-64 h-10 bg-gray-200 rounded-lg mt-4">
                     <label htmlFor="email"></label>
                     <div className="absolute left-2 top-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
@@ -39,7 +39,7 @@ const ForgetPassword = () => {
                         type="email"
                         autoComplete="email"
                         required
-                        className="bg-transparent w-full h-full pl-10 outline-none focus:ring-2 focus:ring-blue-600 text-black rounded-lg"
+                        className="bg-gray-200 w-full h-full pl-10 outline-none focus:ring-2 focus:ring-blue-600 text-black rounded-lg placeholder-gray-500"
                         placeholder="Correo electrónico"
                         value={formData.email}
                         onChange={handleChange}
@@ -50,11 +50,11 @@ const ForgetPassword = () => {
 
 
                 <div className="mt-2 flex items-center">
-                    <Link href="/login" className="text-sm mt-1">Regresar a la pagina anterior</Link>
+                    <Link href="/login" className="text-blue-500 text-sm mt-1">Regresar a la pagina anterior</Link>
                 </div>
 
                 <div className="mt-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    <button type="submit">Recuperar contraseña</button>
+                    <button type="submit">Continuar</button>
                 </div>
 
             </form>
