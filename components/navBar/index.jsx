@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/slices";
 import Cookies from "js-cookie";
 
+
 const Navbar = () => {
   const auth = useSelector((state) => state.auth.isAuthenticated);
   const router = useRouter();
@@ -28,16 +29,14 @@ const Navbar = () => {
   return (
     <Fragment>
       <div
-
-
-        className="p-4 text-gray flex flex-row items-center justify-between bg-gray-500 bg-opacity-80 fixed w-full top-0 h-20"
-        style={{ zIndex: 1000}}
+        style={{ background: "#0576e6e3" }}
+        className="p-4 text-white flex flex-row items-center justify-between shadow-lg"
       >
         <div>
-          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link href="/">
             <Image
               src={logotipo}
-              width={290}
+              width={250}
               alt="Logotipo"
               className=" cursor-pointer"
               priority={true}
@@ -46,33 +45,33 @@ const Navbar = () => {
         </div>
         {auth ? (
           <div>
-            <Link href="/user" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <span className="mr-1 py-1 avant-garde-bold text-base text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">
+            <Link href="/user">
+              <button className="mr-2 py-1 px-1  avant-garde-bold text-base rounded bg-Az3 text-white-800 font-bold avant-garde-bold transition duration-300 ease-in-out hover:bg-Az3 hover:text-Az4 hover:shadow-lg">
                 Perfil
-              </span>
+              </button>
             </Link>
 
-            <span className="mx-1 avant-garde-bold text-base text-Az5">/</span>
-
-            <span
+            <button
               onClick={handleClick}
-              className="ml-1 py-1 avant-garde-bold text-base text-Az5 transition duration-300 ease-in-out hover:text-text-Az1 hover:underline cursor-pointer"
+              className="mr-2 py-1 px-1  avant-garde-bold text-base rounded bg-Az3 text-white-800 font-bold avant-garde-bold transition duration-300 ease-in-out hover:bg-Az3 hover:text-Az4 hover:shadow-lg"
             >
               Logout
-            </span>
+            </button>
           </div>
         ) : (
-        <div className="flex items-center">
-          <Link href="/ingresar" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <span className="mr-1 py-1 avant-garde-bold text-base text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">Ingresar</span>
-          </Link>
+          <div>
+            <Link href="/ingresar">
+              <button className="mr-2 py-1 px-1  avant-garde-bold text-base rounded bg-Az3 text-white-800 font-bold avant-garde-bold transition duration-300 ease-in-out hover:bg-Az3 hover:text-Az4 hover:shadow-lg">
+                Ingresar
+              </button>
+            </Link>
 
-          <span className="mx-1 avant-garde-bold text-base text-Az5">/</span>
-
-          <Link href="/registrarse" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <span className="ml-1 py-1 avant-garde-bold text-base text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">Registrarse</span>
-          </Link>
-        </div>
+            <Link href="/registrarse">
+              <button className="mr-2 py-1 px-1  avant-garde-bold text-base rounded bg-Az3 text-white-800 font-bold avant-garde-bold transition duration-300 ease-in-out hover:bg-Az3 hover:text-Az4 hover:shadow-lg">
+                Registrarse
+              </button>
+            </Link>
+          </div>
         )}
       </div>
     </Fragment>
