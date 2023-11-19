@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import UserLayout from "./layout";
+import Profile from "@/components/profile";
+import UserLayout from "../layout";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { serviceAgents, technicians, finalClients } from "@/redux/slices";
-import { Dasboard } from "@/components";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      <Dasboard />
+      <Profile />
     </div>
   );
 };

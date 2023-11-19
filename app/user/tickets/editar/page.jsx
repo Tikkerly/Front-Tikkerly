@@ -3,7 +3,7 @@ import EditTickets from '@/components/editTickets/index';
 
 const EditedTickets = () => {
   return (
-    <div>
+    <div >
       <EditTickets />
     </div>
   );

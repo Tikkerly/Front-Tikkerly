@@ -21,7 +21,7 @@ const closureHandleGoogleSubmit = async (
       Cookies.set("token", data.token);
       Cookies.set("uid", data.user._id);
     }
-    router.push("/");
+    router.push("/user");
   } catch (error) {
     setLoading(false);
     setMessage(

@@ -8,8 +8,8 @@ import HomeIcon from "@mui/icons-material/Home";
 
 const ServiceAgentRegister = () => {
   return (
-    <div className="h-screen w-screen flex">
-      <div className="mx-62 w-62 bg-gray-500 flex flex-col items-center justify-center text-gray gap-16">
+    <div className="h-screen w-screen flex flex-col items-center justify-center mt-40">
+    <div className="mx-62 w-62 bg-gray-500 flex flex-col items-center justify-center text-gray gap-16">
         <Image
           src={logo}
           style={{ width: "100%", maxWidth: "75%" }}

@@ -49,43 +49,18 @@ const features = [
 ];
 
 const CarrouselServices = () => {
-  const cardsRef = useRef([]);
-
-  const handleScroll = () => {
-    const scrollPosition = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-
-    cardsRef.current.forEach((card, index) => {
-      const cardPosition = card.offsetTop;
-      const offset = (scrollPosition - cardPosition + windowHeight) * 0.5;
-      card.style.transform = `translateY(-${offset}px)`;
-      card.style.opacity = 1 - offset / windowHeight; // Agrega esta línea para controlar la opacidad
-    });
-  };
-
-  useEffect(() => {
-    cardsRef.current = cardsRef.current.slice(0, features.length);
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
       <div className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8`}>
         <div className={`grid carousel-container grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-1 ml-80 mr-80`}>
           {features.map((feature, index) => (
-
             <div
               key={index}
-              ref={(element) => (cardsRef.current[index] = element)}
               className={`bg-Az3 text-black rounded-lg shadow-xl gap-10 overflow-hidden grid grid-cols-2 bg-opacity-70 hover:bg-opacity-100 ${styles.card} ${index % 2 === 0 ? styles.right : styles.left}`}
-              style={{  }} // Agrega esta línea para establecer la opacidad inicial
+              style={{}} // Agrega esta línea para establecer la opacidad inicial
             >
-              <div className={`${index % 2 === 0 ? styles.right : styles.left}`}>
+              <div className={`${index % 2 === 0 ? "order-2": ""}`}>
                 <Image src={feature.backgroundImage} alt={feature.title} width={150} height={600} className={`w-full h-full object-cover`} />
-
               </div>
               <div className={`p-6 flex flex-col items-center justify-center relative`}>
                 <h1 className={`text-3xl font-semibold text-center ${styles["card-h1"]}`}>{feature.title}</h1>

@@ -44,7 +44,7 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className="fixed top-40 w-full">
       <div className="bg-Be bg-opacity-90 p-8 text-gray-900 rounded-lg shadow-md w-full h-full max-w-screen-md mx-auto flex flex-col">
         <div className="flex items-start mb-8">
           <img
