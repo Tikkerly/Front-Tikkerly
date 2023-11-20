@@ -1,34 +1,41 @@
+'use client';
 import Link from 'next/link';
 
-const Dashboard = () => {
- const href = '/tickets'; // or some other logic to get the correct path
+import { useState } from 'react';
+
+export default function Dashboard() {
+ const [tickets, setTickets] = useState([
+    { id: 1234, status: 'open', dueDate: '2022-12-22' },
+    { id: 9101, status: 'open', dueDate: '2022-12-23' },
+ ]);
+
+ const totalActiveTickets = tickets.filter((ticket) => ticket.status === 'open').length;
 
  return (
-    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-        <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-          <div className="max-w-md mx-auto">
-            <div>
-              <img className="h-12 w-auto" src="/assets/images/logo.svg" alt="Logo" />
+    <div className="fixed top-40 w-full">
+
+    <div className="min-h-full min-w-fit bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">My Tickets</h2>
+        <div className="rounded-md shadow-sm -space-y-px">
+          <h3 className="text-center text-xl font-semibold text-gray-800">
+            {totalActiveTickets} active ticket{totalActiveTickets === 1 ? '' : 's'}
+          </h3>
+          {tickets.map((ticket) => (
+            <div
+              key={ticket.id}
+              className={`${
+                  ticket.status === 'open' ? 'bg-blue-100' : 'bg-green-100'
+              } rounded-tl-md rounded-tr-md relative px-4 py-5 sm:px-6 sm:py-5 text-center text-sm font-medium border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent`}
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-blue-600 rounded-t-md" />
+              <p className="text-gray-800">Ticket #{ticket.id}</p>
+              <p className="text-gray-600">Due Date: {ticket.dueDate}</p>
             </div>
-            <div className="divide-y divide-gray-200">
-              <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                {/* Your code */}
-              </div>
-              <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                <Link href="/">
-                 <p className="text-blue-500 hover:text-blue-700">
-                    My Tickets
-                 </p>
-                </Link>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
+                  </div>
  );
-};
-
-export default Dashboard;
+}

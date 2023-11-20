@@ -65,6 +65,8 @@ const UsersView = () => {
   },[])
 
   return (
+    <div className="fixed top-40 w-full">
+
     <div className="flex flex-col justify-center items-center bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md ">
       <div className="w-full">
         <button
@@ -139,9 +141,10 @@ const UsersView = () => {
           />
         ) : (
           <ModalEdit show={showModal} onClose={() => setShowModal(false)} id={id}/>
-        )
-      }
+          )
+        }
     </div>
+        </div>
   );
 };
 

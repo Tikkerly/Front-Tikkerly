@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { serviceAgents, technicians, finalClients } from "@/redux/slices";
 import { Dasboard } from "@/components";
 
-const UserProfile = () => {
+const Dashboard = () => {
   const dispatch = useDispatch();
 
   const servAgents = async () => {
@@ -36,8 +36,8 @@ const UserProfile = () => {
   );
 };
 
-UserProfile.getLayout = function getLayout(page) {
+Dashboard.getLayout = function getLayout(page) {
   return <UserLayout>{page}</UserLayout>;
 };
 
-export default UserProfile;
+export default Dasboard;
