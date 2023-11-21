@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -10,8 +10,16 @@ const CreateTechnician = () => {
   const token = Cookies.get("token");
   const router = useRouter();
 
+  const [agents, setAgents] = useState([]);
+  const [compani, setCompany] = useState({});
+
   const serviceAgents = useSelector((state) => state.options.serviceAgents);
   const company = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    setAgents(serviceAgents);
+    setCompany(company);
+  }, []);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -218,11 +226,12 @@ const CreateTechnician = () => {
             className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           >
             <option value="">Selecciona un Agente de Servicio</option>
-            {serviceAgents.serviceAgent.map((serviceClient) => (
-              <option key={serviceClient._id} value={serviceClient._id}>
-                {serviceClient.username}
-              </option>
-            ))}
+            {agents.serviceAgent &&
+              agents.serviceAgent.map((serviceClient) => (
+                <option key={serviceClient._id} value={serviceClient._id}>
+                  {serviceClient.username}
+                </option>
+              ))}
           </select>
         </div>
 
