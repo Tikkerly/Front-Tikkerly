@@ -12,6 +12,7 @@ import Link from "next/link";
 const Suscripcion = () => {
   return (
     <div>
+      h
       {/* <div className="flex justify-center items-center">
         <h2 className="text-3xl font-bold text-center">
           Debes verificar tu correo para activarte
