@@ -69,7 +69,7 @@ const CreateTechnician = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/user/administrar-usuarios");
+        //router.push("/user/administrar-usuarios");
         setFormData({
           username: "",
           email: "",
