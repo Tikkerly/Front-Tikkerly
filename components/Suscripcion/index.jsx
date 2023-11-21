@@ -12,7 +12,7 @@ import Link from "next/link";
 const Suscripcion = () => {
   return (
     <div>
-      <div className="flex justify-center items-center">
+      {/* <div className="flex justify-center items-center">
         <h2 className="text-3xl font-bold text-center">
           Debes verificar tu correo para activarte
         </h2>
@@ -162,7 +162,7 @@ const Suscripcion = () => {
         >
           <SubmitButton text="Omitir Proceso de pago" />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
