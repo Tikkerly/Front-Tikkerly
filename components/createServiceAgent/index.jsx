@@ -84,8 +84,8 @@ const CreateServiceAgent = () => {
             name="username"
             value={formData.username}
             onChange={handleInputChange}
-            className="mt-4 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+               className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
         </div>
         
         <div>
@@ -97,8 +97,8 @@ const CreateServiceAgent = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="mt-4 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+            className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
         </div>
         
       </div>
@@ -111,11 +111,11 @@ const CreateServiceAgent = () => {
               type="password"
               autoComplete="current-password"
               required
-              className="bg-transparent w-full h-full pl-10 outline-none focus:ring-2 focus:ring-blue-600 text-gray-900 rounded-lg font-regular avant-garde-regular text-sm"
               placeholder="Contraseña"
               value={formData.password}
               onChange={handleInputChange}
-            />
+              className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
       </div>
 
       {/* <div>
@@ -140,8 +140,8 @@ const CreateServiceAgent = () => {
             name="document"
             value={formData.document}
             onChange={handleInputChange}
-            className="mt-4 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+            className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
       </div>
 
       <div>
@@ -151,8 +151,8 @@ const CreateServiceAgent = () => {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className="mt-4 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+            className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
       </div>
       
       <div>
