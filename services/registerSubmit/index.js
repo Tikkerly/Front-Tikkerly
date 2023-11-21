@@ -29,7 +29,7 @@ const registerSubmit = (route, payload, router, disabled) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      router.push("/Suscripcion");
+      router.push("/useractivator");
     } catch (error) {
       disabled(false);
       console.log(error);
