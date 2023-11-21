@@ -1,0 +1,122 @@
+
+.containerr {
+  width: 960px;
+  margin: 100px auto;
+  box-sizing: border-box;
+  
+}
+
+.containerr .columnn {
+  transition: transform 1s ease-in-out; 
+  width: calc(33.3% - 30px); 
+  float: left;
+  padding: 0 0 20px;
+  margin: 0 15px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  transition: .5s;
+  background-color: rgba(240, 248, 255, 0.89);
+  font-family: 'Avant Garde regular', sans-serif;
+
+}
+  .containerr .columnn:hover {
+    background-color: whitesmoke;  
+    transform: scale(1.05);    
+  }
+
+
+.titlee {
+  font-family: 'Avant Garde Bold', sans-serif;
+  background: #00356f;
+  padding: 20px 0;
+}
+
+.titlee .fa {
+  color: #fff;
+  font-size: 60px;
+}
+
+.titlee h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pricee {
+  padding: 10px;
+}
+
+.pricee h4 {
+  margin: 0;
+  padding: 0;
+  color: #009688;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.pricee h4 span {
+  font-weight: 700;
+  font-size: 60px;
+}
+
+.optionn ul {
+  margin: 0;
+  padding: 0;
+}
+
+.optionn ul li {
+  list-style: none;
+  padding: 15px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 300;
+}
+
+.optionn ul li:last-child {
+  border-bottom: none;
+}
+
+
+.columnn a {
+  transition: transform 0.5s ease-in-out; 
+  text-decoration: none;
+  padding: 10px 40px;
+  background: #00356f;
+  color: white;
+  margin: 20px 0 10px;
+  display: inline-block;
+  border-radius: 40px;
+  text-transform: uppercase;
+  font-family: 'Avant Garde Bold', sans-serif;
+}
+.column a:hover {
+    transform: scale(1.1);
+
+  }
+
+
+.columnn:nth-child(2) .titlee, 
+.columnn:nth-child(2) a {
+  background: #0091d2;
+}
+
+.columnn:nth-child(3) .titlee, 
+.columnn:nth-child(3) a {
+  background: #1dbbee;
+}
+
+.icon {
+  transition: transform 0.3s ease-in-out; 
+  font-size:50px;
+  margin-bottom: 10px;
+  color: white;
+
+}
+.icon:hover {
+    transform: scale(1.1);
+}
