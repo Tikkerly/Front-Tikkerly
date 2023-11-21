@@ -22,13 +22,15 @@ const registerSubmit = (route, payload, router, disabled) => {
           "Content-Type": "multipart/form-data", // Importante para enviar archivos
         },
       });
+      console.log(error.response);
 
       Swal.fire({
         position: "top-end",
         icon: "success",
         title: response.data.message,
-        showConfirmButton: false,
+        showConfirmButton: false,  
         timer: 1500,
+        
       });
       router.push("/useractivator");
     } catch (error) {
@@ -36,7 +38,9 @@ const registerSubmit = (route, payload, router, disabled) => {
       Swal.fire({
         icon: "error",
         title: "Error durante el registro",
-        text: error.response.data.message,
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
+        text: error.message,
       });
     }
   };

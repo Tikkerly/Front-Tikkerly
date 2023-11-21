@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import ClearIcon from "@mui/icons-material/Clear";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useSelector } from "react-redux";
+import { USER_ROUTES } from "@/routes/routes";
 
 const TicketsView = () => {
   const id = useSelector((state) => state.auth.user._id);
@@ -17,14 +18,13 @@ const TicketsView = () => {
     const getTickets = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/api/v1/tickets/company/${id}`,
+          `${USER_ROUTES.init}/tickets/company/${id}`,
           {
             headers: {
               "x-token": token,
             },
           }
         );
-        console.log(response.data);
         setTicketsData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -36,8 +36,8 @@ const TicketsView = () => {
 
   const handleTicketDelete = async (ticketId) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3001/api/v1/tickets/deleteticket/${ticketId}`,
+      const response = await axios.get(
+        `${USER_ROUTES.init}/tickets/deleteticket/${id}`,
         {
           headers: {
             "x-token": token,
@@ -48,10 +48,11 @@ const TicketsView = () => {
       setTicketsData((prevTickets) => {
         return {
           ...prevTickets,
-          tickets: prevTickets.tickets.filter(ticket => ticket._id !== ticketId)
+          tickets: prevTickets.tickets.filter(
+            (ticket) => ticket._id !== ticketId
+          ),
         };
       });
-
     } catch (error) {}
   };
 
@@ -99,42 +100,42 @@ const TicketsView = () => {
           {ticketsData.tickets
             ?.filter((ticket) => ticket.status === true) // Filtrar por status true
             .map((tickets) => (
-            <tr key={tickets.internalConsecutive}>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.company_id.username}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.serviceClient_id.username}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.technician_id.username}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.finalClient_id.username}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.serviceType}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.serviceDescription}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular border">
-                {tickets.ticketStatus}
-              </td>
-              <td className="py-2 px-4 font-regular avant-garde-regular ">
-                <Link
-                  href="/user/tickets/editar"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
-                </Link>
-                <ClearIcon
-                  className="text-red-500 hover:text-red-700"
-                  onClick={() => handleTicketDelete(tickets._id)}
-                />
-              </td>
-            </tr>
-          ))}
+              <tr key={tickets.internalConsecutive}>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.company_id.username}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.serviceClient_id.username}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.technician_id.username}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.finalClient_id.username}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.serviceType}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.serviceDescription}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular border">
+                  {tickets.ticketStatus}
+                </td>
+                <td className="py-2 px-4 font-regular avant-garde-regular ">
+                  <Link
+                    href="/user/tickets/editar"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
+                  </Link>
+                  <ClearIcon
+                    className="text-red-500 hover:text-red-700"
+                    onClick={() => handleTicketDelete(tickets._id)}
+                  />
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

@@ -86,6 +86,8 @@ const FormUtils = () => {
       Swal.fire({
         icon: "error",
         title: "Error durante el registro",
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
         text: error.response.data.errors[0].msg,
       });
     }

@@ -22,7 +22,7 @@ const RegisterPage = () => {
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
           <HomeIcon fontSize="large" />
-          <h2 className={` text-xl avant-garde-regular font-regular ${styles.back} `} >Volver a la página principal</h2>
+          <h2 className={` text-lg avant-garde-regular font-regular ${styles.back} `} >Volver a la página principal</h2>
         </Link>
       </div>
       <div className="lg:h-screen lg:bg-gray-100 lg:grid lg:grid-cols-1 lg:gap-16 lg:items-center lg:justify-center lg:w-100 w-screen h-screen bg-gray-100 grid grid-cols-1 gap-16 items-center justify-center">

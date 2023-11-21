@@ -59,6 +59,8 @@ export default function ModalEdit({ show, onClose, id }) {
       Swal.fire({
         icon: "error",
         title: "Error durante la edición",
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
         text: error.response.data.errors[0].msg,
       });
     }

@@ -5,6 +5,8 @@ import { FormInputs, SubmitButton } from "@/components";
 import { registerSubmit } from "@/services";
 import { USER_ROUTES } from "@/routes/routes";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import load from "../../public/load.gif";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -28,7 +30,6 @@ const RegisterForm = () => {
 
     setFormData({ ...formData, [e.target.name]: file });
   };
-  console.log(formData);
 
   const handleChange = (e) => {
     setErrors(
@@ -240,18 +241,16 @@ const RegisterForm = () => {
             )}
           </div>
         </div>
-        {disabled ? (
-          <div className="avant-garde-bold font-bold bg-Az5 text-gray px-6 py-3 rounded-full transition duration-300 hover:shadow-md w-8">
-            <p>Cargando...</p>
-          </div>
-        ) : (
-          <SubmitButton
+        {disabled ? ( 
+            <Image src={load} width={30} height={30} alt="Loading2" />
+            ) : ( 
+      
+            <SubmitButton
             text={"Registrarse"}
             type={"submit"}
             disabled={isDisabled}
           />
-        )}
-
+            )}
       </div>
     </form>
   );

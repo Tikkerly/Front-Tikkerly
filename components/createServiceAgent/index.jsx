@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { USER_ROUTES } from "@/routes/routes";
 
 const CreateServiceAgent = () => {
-
   const token = Cookies.get("token");
   const company = useSelector((state) => state.auth.user);
 
@@ -31,9 +31,9 @@ const CreateServiceAgent = () => {
     e.preventDefault();
 
     try {
-      console.log(formData)
+      console.log(formData);
       const response = await fetch(
-        "http://localhost:3001/api/v1/serviceagent/registerserviceagent",
+        `${USER_ROUTES.init}/serviceagent/registerserviceagent`,
         {
           method: "POST",
 
@@ -55,13 +55,13 @@ const CreateServiceAgent = () => {
           timer: 1500,
         });
         setFormData({
-            username: "",
-            email: "",
-            password: "",
-            // confirmPassword: "",
-            company_id: company._id,
-            document: "",
-            phone: "",
+          username: "",
+          email: "",
+          password: "",
+          // confirmPassword: "",
+          company_id: company._id,
+          document: "",
+          phone: "",
         });
       } else {
         alert("Error al registrar el ticket");
@@ -87,7 +87,7 @@ const CreateServiceAgent = () => {
                className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-white">
             Correo Electrónico:
@@ -100,12 +100,14 @@ const CreateServiceAgent = () => {
             className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
         </div>
-        
       </div>
-      
+
       <div>
-        <label className="block text-sm font-medium text-white">Contraseña:</label>
+        <label className="block text-sm font-medium text-white">
+          Contraseña:
+        </label>
         <input
+
               id="password"
               name="password"
               type="password"
@@ -116,6 +118,7 @@ const CreateServiceAgent = () => {
               onChange={handleInputChange}
               className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+
       </div>
 
       {/* <div>
@@ -134,27 +137,37 @@ const CreateServiceAgent = () => {
       </div> */}
 
       <div>
-        <label className="block text-sm font-medium text-white">Documento:</label>
+        <label className="block text-sm font-medium text-white">
+          Documento:
+        </label>
         <input
+
             type="text"
             name="document"
             value={formData.document}
             onChange={handleInputChange}
+
             className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
+
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-white">Teléfono:</label>
+        <label className="block text-sm font-medium text-white">
+          Teléfono:
+        </label>
         <input
+
             type="text"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
+
             className="mt-4 block w-full py-2 px-3 border text-xl border-gray-300 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
+
       </div>
-      
+
       <div>
         <button
           type="submit"

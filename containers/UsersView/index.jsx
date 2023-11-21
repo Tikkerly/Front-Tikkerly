@@ -5,6 +5,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import ClearIcon from "@mui/icons-material/Clear";
 import EditNoteIcon from "@mui/icons-material/EditNote";
+import { USER_ROUTES } from "@/routes/routes";
 import { useSelector } from "react-redux";
 
 const UsersViews = () => {
@@ -21,7 +22,7 @@ const UsersViews = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/v1/user", {
+        const response = await axios.get(`${USER_ROUTES.init}/user`, {
           headers: {
             "x-token": token,
           },
@@ -38,22 +39,22 @@ const UsersViews = () => {
   const handleUsersDelete = async (userId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/api/v1/user/deleteuser/${userId}`,
+        `${USER_ROUTES.init}/user/deleteuser/${userId}`,
         {
           headers: {
             "x-token": token,
           },
         }
-        );
-        setUserData((prevUserData) => {
-          return {
-            ...prevUserData,
-            users: prevUserData.users.filter((user) => user._id !== userId),
-          };
-        });
-        alert("Usuario eliminado")
+      );
+      setUserData((prevUserData) => {
+        return {
+          ...prevUserData,
+          users: prevUserData.users.filter((user) => user._id !== userId),
+        };
+      });
+      alert("Usuario eliminado");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 

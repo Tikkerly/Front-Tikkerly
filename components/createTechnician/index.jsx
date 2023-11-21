@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { USER_ROUTES } from "@/routes/routes";
 
 const CreateTechnician = () => {
   const token = Cookies.get("token");
@@ -37,7 +38,7 @@ const CreateTechnician = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/v1/technician/registertechnician",
+        `${USER_ROUTES.init}/technician/registertechnician`,
         {
           method: "POST",
 

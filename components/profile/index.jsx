@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { userDetails } from "@/redux/slices/authSlices";
+import { USER_ROUTES } from "@/routes/routes";
 
 const Profile = () => {
   const id = useSelector((state) => state.auth.user._id);
@@ -35,7 +36,7 @@ const Profile = () => {
   const handleSaveChanges = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/v1/user/edituser/${id}`,
+        `${USER_ROUTES.init}/user/edituser/${id}`,
         editable,
         {
           headers: {

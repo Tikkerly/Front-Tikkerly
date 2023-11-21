@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { USER_ROUTES } from "@/routes/routes";
 
 const CreateTickect = () => {
   const token = Cookies.get("token");
@@ -53,7 +54,7 @@ const CreateTickect = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/v1/tickets/registerticket",
+        `${USER_ROUTES.init}/tickets/registerticket`,
         {
           method: "POST",
 
@@ -100,9 +101,7 @@ const CreateTickect = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      
       <div className="grid grid-cols-1 gap-6">
-
         <div>
           <label className="block text-sm font-medium text-white">
             Tipo de Servicio:
@@ -162,7 +161,7 @@ const CreateTickect = () => {
             ))}
         </select>
       </div>
-      
+
       <div>
         <label className="block text-sm font-medium text-white">Técnico:</label>
         <select

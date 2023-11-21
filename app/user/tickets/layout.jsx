@@ -1,5 +1,6 @@
 "use client";
 import { finalClients, serviceAgents, technicians } from "@/redux/slices";
+import { USER_ROUTES } from "@/routes/routes";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -8,15 +9,15 @@ const TicketsLayout = ({ children }) => {
   const dispatch = useDispatch();
 
   const servAgents = async () => {
-    const { data } = await axios("http://localhost:3001/api/v1/serviceagent");
+    const { data } = await axios(`${USER_ROUTES.init}/serviceagent`);
     dispatch(serviceAgents(data));
   };
   const techs = async () => {
-    const { data } = await axios("http://localhost:3001/api/v1/technician");
+    const { data } = await axios(`${USER_ROUTES.init}/technician`);
     dispatch(technicians(data));
   };
   const finalCli = async () => {
-    const { data } = await axios("http://localhost:3001/api/v1/finalclient");
+    const { data } = await axios(`${USER_ROUTES.init}/finalclient`);
     dispatch(finalClients(data));
   };
 

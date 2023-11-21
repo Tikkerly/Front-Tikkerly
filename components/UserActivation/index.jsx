@@ -2,12 +2,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { USER_ROUTES } from "@/routes/routes";
 
 const UserActivation = ({ id }) => {
   const [data, setData] = useState({});
   const userData = () => {
     const { data } = axios.post(
-      `http://localhost:3001/api/v1/user/validateregister/${id.id}`
+      `${USER_ROUTES.init}/user/validateregister/${id.id}`
     );
     setData(data);
   };

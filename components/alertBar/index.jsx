@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
+import { USER_ROUTES } from "@/routes/routes";
 
 initMercadoPago(process.env.NEXT_PUBLIC_MERCADOPAGO);
 
@@ -13,9 +14,9 @@ const AlertBar = () => {
   const user = useSelector((state) => state.auth.user);
 
   const handleClick = async () => {
-    const { data } = await axios.post("http://localhost:3001/api/v1/payment", {
+    const { data } = await axios.post(`${USER_ROUTES.payment}`, {
       username: user.username,
-      price: 40000,
+      price: 10000,
       quantity: 1,
     });
     setPreferenceId(data.id);

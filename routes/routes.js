@@ -1,6 +1,7 @@
 import config from "@/config/config";
 
 const USER_ROUTES = {
+  init: `${config.URL_BACK}`,
   loginUser: `${config.URL_BACK}/auth/login`,
   loginGoogleUser: `${config.URL_BACK}/auth/google`,
   getUser: `${config.URL_BACK}/user`,
@@ -11,6 +12,7 @@ const USER_ROUTES = {
   img: `${config.URL_BACK}/upload`,
   forgetPassword: `${config.URL_BACK}/user/forgotpassword`,
   recoveryPassword: `${config.URL_BACK}/user/passwordrecovery`,
+  payment: `${config.URL_BACK}/payment`,
 };
 
 export { USER_ROUTES };

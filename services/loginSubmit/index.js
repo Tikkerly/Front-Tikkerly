@@ -27,7 +27,7 @@ const closureHandleSubmit = (
     } catch (error) {
       setLoading(false);
       setMessage(
-        "No se ha podido iniciar sesión. Revise si ha ingresado bien los campos o intente más tarde."
+        "No se ha podido iniciar sesión, revise si ha ingresado bien los campos o intente más tarde."
       );
     }
   };

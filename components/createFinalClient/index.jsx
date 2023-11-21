@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { USER_ROUTES } from "@/routes/routes";
 
 const CreateFinalClient = () => {
   const token = Cookies.get("token");
@@ -34,7 +35,7 @@ const CreateFinalClient = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/v1/finalClient/registerfinalclient",
+        `${USER_ROUTES.init}/finalClient/registerfinalclient`,
         {
           method: "POST",
 

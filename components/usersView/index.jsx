@@ -43,6 +43,8 @@ const UsersView = () => {
       Swal.fire({
         icon: "error",
         title: "Error durante la eliminacion",
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
         text: error.response.data.errors[0].msg,
       });
     }
@@ -65,6 +67,8 @@ const UsersView = () => {
       Swal.fire({
         icon: "error",
         title: "Error durante la eliminacion",
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
         text: error.response.data.errors[0].msg,
       });
     }
@@ -87,6 +91,8 @@ const UsersView = () => {
       Swal.fire({
         icon: "error",
         title: "Error durante la eliminacion",
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
         text: error.response.data.errors[0].msg,
       });
     }
@@ -109,6 +115,8 @@ const UsersView = () => {
       Swal.fire({
         icon: "error",
         title: "Error durante la eliminacion",
+        confirmButtonColor: '#00356f',
+        confirmButtonText: 'Cerrar',
         text: error.response.data.errors[0].msg,
       });
     }
