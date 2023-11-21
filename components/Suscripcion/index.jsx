@@ -160,7 +160,7 @@ const Suscripcion = () => {
           href="/ingresar"
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <SubmitButton text={"Omitir Proceso de pago"} />
+          <SubmitButton text="Omitir Proceso de pago" />
         </Link>
       </div>
     </div>
