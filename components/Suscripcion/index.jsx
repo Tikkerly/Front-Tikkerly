@@ -149,7 +149,10 @@ const Suscripcion = () => {
         <a href="">Obtener</a>
       </div>
 
-      <Link href="/user" style={{ textDecoration: "none", color: "inherit" }}>
+      <Link
+        href="/ingresar"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
         <SubmitButton text={"Omitir Proceso de pago"} />
       </Link>
     </div>
