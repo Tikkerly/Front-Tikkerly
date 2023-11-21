@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -7,7 +9,15 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
+
 const SideBar = () => {
+  const route = usePathname();
+  const isNotOnPageAuth = !(route === "/tickets/id" );
+
+  if (!isNotOnPageAuth) {
+    return <></>;
+  }
+
   return (
     <div className="flex flex-col items-center mt-4 ">
       <Link href="/user" passHref>

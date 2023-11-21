@@ -108,7 +108,7 @@ const ChangePassword = ({ token }) => {
           </Link>
         </div>
 
-        <div className="mt-2 avant-garde-bold font-bold bg-Az5 text-gray px-6 py-3 rounded-full transition duration-300 hover:shadow-md">
+        <div className="mt-2 w-1/2 avant-garde-bold font-bold bg-Az5 text-gray px-6 py-3 rounded-full transition duration-300 hover:shadow-md">
           <button onClick={handleSubmit}>Cambiar contraseña</button>
         </div>
       </form>

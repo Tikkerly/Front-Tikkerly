@@ -1,12 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { USER_ROUTES } from "@/routes/routes";
 
 const registerSubmit = (route, payload, router, disabled) => {
   return async (event) => {
     event.preventDefault();
-    
-    disabled(true)
+
+    disabled(true);
 
     const formData = new FormData();
 
@@ -22,24 +21,23 @@ const registerSubmit = (route, payload, router, disabled) => {
           "Content-Type": "multipart/form-data", // Importante para enviar archivos
         },
       });
-      console.log(error.response);
 
       Swal.fire({
         position: "top-end",
         icon: "success",
         title: response.data.message,
-        showConfirmButton: false,  
+        showConfirmButton: false,
         timer: 1500,
-        
       });
-      router.push("/useractivator");
+      router.push("/Suscripcion");
     } catch (error) {
-      disabled(false)
+      disabled(false);
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Error durante el registro",
-        confirmButtonColor: '#00356f',
-        confirmButtonText: 'Cerrar',
+        confirmButtonColor: "#00356f",
+        confirmButtonText: "Cerrar",
         text: error.message,
       });
     }

@@ -9,10 +9,20 @@ import { USER_ROUTES } from "@/routes/routes";
 import { useSelector } from "react-redux";
 
 const UsersViews = () => {
+  const [techs, setTechs] = useState([]);
+  const [final, setFinal] = useState([]);
+  const [agents, setAgents] = useState([]);
+
   const token = Cookies.get("token");
   const technicians = useSelector((state) => state.options.technicians);
   const finalClients = useSelector((state) => state.options.finalClients);
   const serviceAgents = useSelector((state) => state.options.serviceAgents);
+
+  useEffect(() => {
+    setTechs(technicians);
+    setFinal(finalClients);
+    setAgents(serviceAgents);
+  }, []);
 
   const [userData, setUserData] = useState({
     total: 0,
@@ -60,7 +70,7 @@ const UsersViews = () => {
 
   return (
     <div className="flex flex-col items-center bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md">
-      {/* <div className="mb-4 space-x-4">
+      <div className="mb-4 space-x-4">
         <Link
           href="/user/administrar-usuarios/agregar-cliente"
           style={{ textDecoration: "none", color: "inherit" }}
@@ -111,40 +121,41 @@ const UsersViews = () => {
             </tr>
           </thead>
           <tbody>
-            {userData.users.map((user, index) => (
-              <tr key={index}>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {user.username}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {user.nit}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {user.email}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {user.phone}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {user.personType}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {user.isPaid ? "Contratado" : "No Contrató"}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular ">
-                  <Link
-                    href="/user/edituser/:id"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
-                  </Link>
-                  <ClearIcon
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => handleUsersDelete(user._id)}
-                  />
-                </td>
-              </tr>
-            ))}
+            {userData.map &&
+              userData.users.map((user, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {user.username}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {user.nit}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {user.email}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {user.phone}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {user.personType}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {user.isPaid ? "Contratado" : "No Contrató"}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular ">
+                    <Link
+                      href="/user/edituser/:id"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
+                    </Link>
+                    <ClearIcon
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleUsersDelete(user._id)}
+                    />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -173,37 +184,38 @@ const UsersViews = () => {
             </tr>
           </thead>
           <tbody>
-            {serviceAgents.serviceAgent.map((serviceAgent, index) => (
-              <tr key={index}>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {serviceAgent.username}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {serviceAgent.document}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {serviceAgent.email}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {serviceAgent.phone}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {serviceAgent.status ? "Activo" : "No Activo"}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular ">
-                  <Link
-                    href="/user/edituser/:id"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
-                  </Link>
-                  <ClearIcon
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => handleTicketDelete(ticket.id)}
-                  />
-                </td>
-              </tr>
-            ))}
+            {agents.serviceAgent &&
+              agents.serviceAgent.map((serviceAgent, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {serviceAgent.username}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {serviceAgent.document}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {serviceAgent.email}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {serviceAgent.phone}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {serviceAgent.status ? "Activo" : "No Activo"}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular ">
+                    <Link
+                      href="/user/edituser/:id"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
+                    </Link>
+                    <ClearIcon
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleTicketDelete(ticket.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -232,37 +244,38 @@ const UsersViews = () => {
             </tr>
           </thead>
           <tbody>
-            {technicians.technicians.map((technicians, index) => (
-              <tr key={index}>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {technicians.username}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {technicians.document}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {technicians.email}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {technicians.phone}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {technicians.status ? "Activo" : "No Activo"}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular ">
-                  <Link
-                    href="/user/edituser/:id"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
-                  </Link>
-                  <ClearIcon
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => handleTicketDelete(ticket.id)}
-                  />
-                </td>
-              </tr>
-            ))}
+            {techs.technicians &&
+              techs.technicians.map((technicians, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {technicians.username}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {technicians.document}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {technicians.email}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {technicians.phone}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {technicians.status ? "Activo" : "No Activo"}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular ">
+                    <Link
+                      href="/user/edituser/:id"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
+                    </Link>
+                    <ClearIcon
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleTicketDelete(ticket.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -291,40 +304,41 @@ const UsersViews = () => {
             </tr>
           </thead>
           <tbody>
-            {finalClients.finalClients.map((finalClients, index) => (
-              <tr key={index}>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {finalClients.username}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {finalClients.document}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {finalClients.email}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {finalClients.phone}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular border">
-                  {finalClients.status ? "Activo" : "No Activo"}
-                </td>
-                <td className="py-2 px-4 font-regular avant-garde-regular ">
-                  <Link
-                    href="/user/edituser/:id"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
-                  </Link>
-                  <ClearIcon
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => handleTicketDelete(ticket.id)}
-                  />
-                </td>
-              </tr>
-            ))}
+            {final.finalClients &&
+              final.finalClients.map((finalClients, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {finalClients.username}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {finalClients.document}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {finalClients.email}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {finalClients.phone}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular border">
+                    {finalClients.status ? "Activo" : "No Activo"}
+                  </td>
+                  <td className="py-2 px-4 font-regular avant-garde-regular ">
+                    <Link
+                      href="/user/edituser/:id"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
+                    </Link>
+                    <ClearIcon
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleTicketDelete(ticket.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
   );
 };

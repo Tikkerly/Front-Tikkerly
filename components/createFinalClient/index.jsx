@@ -17,6 +17,8 @@ const CreateFinalClient = () => {
     setAgentes(serviceAgents);
   }, []);
 
+  console.log(agentes);
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -82,16 +84,73 @@ const CreateFinalClient = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='h-screen w-screen p-8 ml-8'>
-      <div className="grid grid-cols-1 gap-6">
+    <>
+      <div className="flex justify-center items-center">
+        <h2 className="text-3xl font-bold text-center">Crear Cliente</h2>
+      </div>
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md space-y-6">
+        <div className="grid grid-cols-1 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-800">
+              Nombre:
+            </label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-800">
+              Correo:
+            </label>
+            <input
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-800">
+              Tipo de Documento:
+            </label>
+            <input
+              type="text"
+              name="documentType"
+              value={formData.documentType}
+              onChange={handleInputChange}
+              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-800">
+              Documento:
+            </label>
+            <input
+              type="text"
+              name="document"
+              value={formData.document}
+              onChange={handleInputChange}
+              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-800">
-            Nombre:
+            Teléfono:
           </label>
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="phone"
+            value={formData.phone}
             onChange={handleInputChange}
             className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -99,95 +158,47 @@ const CreateFinalClient = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-800">
-            Correo:
+            Dirección:
           </label>
           <input
             type="text"
-            name="email"
-            value={formData.email}
+            name="address"
+            value={formData.address}
             onChange={handleInputChange}
             className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-800">
-            Tipo de Documento:
+          <label className="block text-sm font-medium text-white">
+            Agente de Servicio:
           </label>
-          <input
-            type="text"
-            name="documentType"
-            value={formData.documentType}
+          <select
+            name="serviceClient_id"
+            value={formData.serviceClient_id}
             onChange={handleInputChange}
             className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+          >
+            <option value="">Selecciona un Agente de Servicio</option>
+            {agentes.serviceAgent &&
+              agentes.serviceAgent.map((serviceClient) => (
+                <option key={serviceClient._id} value={serviceClient._id}>
+                  {serviceClient.username}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-800">
-            Documento:
-          </label>
-          <input
-            type="text"
-            name="document"
-            value={formData.document}
-            onChange={handleInputChange}
-            className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"          />
+          <button
+            type="submit"
+            className=" mt-4 avant-garde-bold font-bold text-gray px-6 py-3 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
+          >
+            Crear Cliente Final
+          </button>
         </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-800">
-          Teléfono:
-        </label>
-        <input
-          type="text"
-          name="phone"
-          value={formData.phone}
-          onChange={handleInputChange}
-          className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-800">
-          Dirección:
-        </label>
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleInputChange}
-          className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"        />
-      </div>
-
-
-      {/* <div>
-        <label className="block text-sm font-medium text-white">
-          Agente de Servicio:
-        </label>
-        <select
-          name="serviceClient_id"
-          value={formData.serviceClient_id}
-          onChange={handleInputChange}
-          className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"        >
-          <option value="">Selecciona un Agente de Servicio</option>
-          {agentes &&
-            agentes.serviceAgent.map((serviceClient) => (
-              <option key={serviceClient._id} value={serviceClient._id}>
-                {serviceClient.username}
-              </option>
-            ))}
-        </select>
-      </div> */}
-
-      <div>
-        <button
-          type="submit"
-          className=" mt-4 avant-garde-bold font-bold text-gray px-6 py-3 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"        >
-          Crear Cliente Final
-        </button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 

@@ -44,7 +44,7 @@ const AlertBar = () => {
   const alertClasses = {
     success: "bg-green-500",
     error: "bg-red-500",
-    warning: "bg-yellow-500",
+    warning: "bg-yellow-400",
     // Agrega más clases según tus necesidades (p. ej., info, etc.)
   };
 
@@ -54,19 +54,21 @@ const AlertBar = () => {
 
   return (
     <div
-      className={`flex justify-between items-center fixed top-20 left-0 right-0 z-50 p-4 ${alertClasses[type]} ${textColor}`}
+      className={`flex  justify-between fixed top-20 w-full left-1/2 transform -translate-x-1/2 z-50 p-4 ${alertClasses[type]} ${textColor}`}
       role="alert"
     >
       <p className="text-center">
-        Tu licencia de prueba vence el: {userPersist.trialEndDate}{" "}
+        Tu licencia de prueba vence el: {userPersist.trialEndDate}
       </p>
-      <button
-        onClick={handleClick}
-        className="ml-4 bg-white text-gray-800 font-semibold py-2 px-4 rounded text-center"
-      >
-        Comprar licencia
-      </button>
-      {renderCheckoutButton(preferenceId)}
+      <div className="">
+        <button
+          onClick={handleClick}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300"
+        >
+          Comprar licencia
+        </button>
+        {renderCheckoutButton(preferenceId)}
+      </div>
     </div>
   );
 };

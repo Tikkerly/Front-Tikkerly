@@ -9,11 +9,14 @@ const validation = (type, values) => {
             if (!values.email) {
                 errors.email = 'El campo es obligatorio';
             }
-            // if (!values.img) {
-            //     errors.img = 'El campo es obligatorio';
-            // }
+          /*  if (!values.img) {
+                errors.img = 'El campo es obligatorio';
+             } */
             if (!values.phone) {
                 errors.phone = 'El campo es obligatorio';
+            }
+            if (!values.address) {
+                errors.address = 'El campo es obligatorio';
             }
             if (!values.nit) {
                 errors.nit = 'El campo es obligatorio';

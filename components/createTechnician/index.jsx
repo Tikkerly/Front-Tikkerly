@@ -4,9 +4,11 @@ import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { USER_ROUTES } from "@/routes/routes";
+import { useRouter } from "next/navigation";
 
 const CreateTechnician = () => {
   const token = Cookies.get("token");
+  const router = useRouter();
 
   const serviceAgents = useSelector((state) => state.options.serviceAgents);
   const company = useSelector((state) => state.auth.user);
@@ -59,6 +61,7 @@ const CreateTechnician = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        router.push("/user/administrar-usuarios");
         setFormData({
           username: "",
           email: "",
@@ -82,147 +85,157 @@ const CreateTechnician = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}  className='h-screen w-screen p-8 ml-8'>
-      <div>
-        <label className="block text-sm font-medium text-white">Nombre:</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
+    <>
+      <div className="flex justify-center items-center">
+        <h2 className="text-3xl font-bold text-center">Crear Tecnico</h2>
       </div>
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md space-y-6">
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Nombre:
+          </label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">Correo:</label>
-        <input
-          type="text"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Correo:
+          </label>
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Documento:
-        </label>
-        <input
-          type="text"
-          name="document"
-          value={formData.document}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Documento:
+          </label>
+          <input
+            type="text"
+            name="document"
+            value={formData.document}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Tipo de Documento:
-        </label>
-        <input
-          type="text"
-          name="documentType"
-          value={formData.documentType}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Tipo de Documento:
+          </label>
+          <input
+            type="text"
+            name="documentType"
+            value={formData.documentType}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Teléfono:
-        </label>
-        <input
-          type="text"
-          name="phone"
-          value={formData.phone}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Teléfono:
+          </label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Dirección:
-        </label>
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Dirección:
+          </label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Método de pago:
-        </label>
-        <input
-          type="text"
-          name="paymentMethods"
-          value={formData.paymentMethods}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Método de pago:
+          </label>
+          <input
+            type="text"
+            name="paymentMethods"
+            value={formData.paymentMethods}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Número de cuenta:
-        </label>
-        <input
-          type="text"
-          name="accountNumber"
-          value={formData.accountNumber}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Número de cuenta:
+          </label>
+          <input
+            type="text"
+            name="accountNumber"
+            value={formData.accountNumber}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-white">
-          Tipo de Servicio:
-        </label>
-        <input
-          type="text"
-          name="serviceTypes"
-          value={formData.serviceTypes}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Tipo de Servicio:
+          </label>
+          <input
+            type="text"
+            name="serviceTypes"
+            value={formData.serviceTypes}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
 
-      {/* <div>
-        <label className="block text-sm font-medium text-white">
-          Agente de Servicio:
-        </label>
-        <select
-          name="serviceClient_id"
-          value={formData.serviceClient_id}
-          onChange={handleInputChange}
-          className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        >
-          <option value="">Selecciona un Agente de Servicio</option>
-          {serviceAgents.serviceAgent.map((serviceClient) => (
-            <option key={serviceClient._id} value={serviceClient._id}>
-              {serviceClient.username}
-            </option>
-          ))}
-        </select>
-      </div> */}
+        <div>
+          <label className="block text-sm font-medium text-black">
+            Agente de Servicio:
+          </label>
+          <select
+            name="serviceClient_id"
+            value={formData.serviceClient_id}
+            onChange={handleInputChange}
+            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <option value="">Selecciona un Agente de Servicio</option>
+            {serviceAgents.serviceAgent.map((serviceClient) => (
+              <option key={serviceClient._id} value={serviceClient._id}>
+                {serviceClient.username}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="col-span-2">
-        <button
-          type="submit"
-          className="mt-4 avant-ga50%bold font-bold text-gray px-6 py-3 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"        >
-          Crear Técnico
-        </button>
-      </div>
-    </form>
+        <div className="col-span-2">
+          <button
+            type="submit"
+            className="mt-4 avant-ga50%bold font-bold text-gray px-6 py-3 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
+          >
+            Crear Técnico
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 
