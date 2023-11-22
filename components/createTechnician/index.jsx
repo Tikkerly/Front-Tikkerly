@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { validation } from "@/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPersonWalkingArrowLoopLeft } from "@fortawesome/free-solid-svg-icons";
+
 import Link from "next/link";
 
 const CreateTechnician = () => {
@@ -97,219 +98,6 @@ const CreateTechnician = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-        <h2 className="text-3xl font-bold text-center">Crear Tecnico</h2>
-      </div>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-md space-y-6">
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Nombre:
-          </label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.username && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.username}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Correo:
-          </label>
-          <input
-            type="text"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.email && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.email}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-800">
-            Tipo de Documento:
-          </label>
-          <select
-            name="documentType"
-            value={formData.documentType}
-            onChange={handleInputChange}
-            className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          >
-            <option value="">Tipo de Documento</option>
-            <option value="NIT">NIT</option>
-            <option value="DNI">DNI</option>
-            <option value="PASAPORTE">PASAPORTE</option>
-          </select>
-          <div className="h-2">
-            {errors.documentType && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.documentType}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Documento:
-          </label>
-          <input
-            type="text"
-            name="document"
-            value={formData.document}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.document && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.document}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Teléfono:
-          </label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.phone && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.phone}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Dirección:
-          </label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.address && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.address}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Método de pago:
-          </label>
-          <input
-            type="text"
-            name="paymentMethods"
-            value={formData.paymentMethods}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.paymentMethods && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.paymentMethods}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Número de cuenta:
-          </label>
-          <input
-            type="text"
-            name="accountNumber"
-            value={formData.accountNumber}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.accountNumber && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.accountNumber}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Tipo de Servicio:
-          </label>
-          <input
-            type="text"
-            name="serviceTypes"
-            value={formData.serviceTypes}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-           <div className="h-2">
-            {errors.serviceTypes && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.serviceTypes}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-black">
-            Agente de Servicio:
-          </label>
-          <select
-            name="serviceClient_id"
-            value={formData.serviceClient_id}
-            onChange={handleInputChange}
-            className="mt-4 block w-50% py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          >
-            <option value="">Selecciona un Agente de Servicio</option>
-            {serviceAgents.serviceAgent.map((serviceClient) => (
-              <option key={serviceClient._id} value={serviceClient._id}>
-                {serviceClient.username}
-              </option>
-            ))}
-          </select>
-          <div className="h-2">
-            {errors.serviceClient_id && (
-              <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.serviceClient_id}
-              </p>
-            )}
-          </div>
-
       <div className="grid gap-4 w-5/6 bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md gap-4 ">
         <div>
           <Link
@@ -332,132 +120,232 @@ const CreateTechnician = () => {
 
         <form onSubmit={handleSubmit} className="grid gap-4 space-y-6 ">
           <div className="grid grid-cols-2 gap-8 ">
-            <div className={styles3}>
-              <label className={styles2}>Nombre:</label>
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
-                className={styles}
-              />
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Nombre:</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.username && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.username}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Correo:</label>
-              <input
-                type="text"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={styles}
-              />
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Correo:</label>
+                <input
+                  type="text"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>            
+              <div>
+              {errors.email && (
+                <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                  {errors.email}
+                </p>
+              )}
+            </div>
             </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Documento:</label>
-              <input
-                type="text"
-                name="document"
-                value={formData.document}
-                onChange={handleInputChange}
-                className={styles}
-              />
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Tipo de Documento:</label>
+                <select
+                  name="documentType"
+                  value={formData.documentType}
+                  onChange={handleInputChange}
+                  className={styles}
+                >
+                  <option value="">Tipo de Documento</option>
+                  <option value="NIT">NIT</option>
+                  <option value="DNI">DNI</option>
+                  <option value="PASAPORTE">PASAPORTE</option>
+                </select>
+              </div>
+
+              <div className="h-2">
+                {errors.documentType && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.documentType}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Tipo de Documento:</label>
-              <input
-                type="text"
-                name="documentType"
-                value={formData.documentType}
-                onChange={handleInputChange}
-                className={styles}
-              />
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Documento:</label>
+                <input
+                  type="text"
+                  name="document"
+                  value={formData.document}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.document && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.document}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Teléfono:</label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className={styles}
-              />
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Teléfono:</label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.phone && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.phone}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Dirección:</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.address && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.address}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Método de pago:</label>
+                <select
+                  name="paymentMethods"
+                  value={formData.paymentMethods}
+                  onChange={handleInputChange}
+                  className={styles}
+                >
+                  <option value="" disabled selected>Método de pago</option>
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Transferencia">Transferencia</option>
+                </select>
+              </div>
+
+              <div className="h-2">
+                {errors.paymentMethods && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.paymentMethods}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Dirección:</label>
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                className={styles}
-              />
-            </div>
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Número de cuenta:</label>
+                <input
+                  type="text"
+                  name="accountNumber"
+                  value={formData.accountNumber}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Método de pago:</label>
-              <input
-                type="text"
-                name="paymentMethods"
-                value={formData.paymentMethods}
-                onChange={handleInputChange}
-                className={styles}
-              />
+              <div className="h-2">
+                {errors.accountNumber && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.accountNumber}
+                  </p>
+                )}
+              </div>
             </div>
-
+              <div> 
             <div className={styles3}>
-              <label className={styles2}>Número de cuenta:</label>
-              <input
-                type="text"
-                name="accountNumber"
-                value={formData.accountNumber}
-                onChange={handleInputChange}
-                className={styles}
-              />
-            </div>
-
-            <div className={styles3}>
-              <label className={styles2}>Tipo de Servicio:</label>
+              <label className={styles2}>
+                Tipo de Servicio:
+              </label>
               <input
                 type="text"
                 name="serviceTypes"
                 value={formData.serviceTypes}
                 onChange={handleInputChange}
-                className={styles}
-              />
+                className={styles}              />                    
+                  </div>
+
+              <div className="h-2">
+                {errors.serviceTypes && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.serviceTypes}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className={styles3}>
-              <label className={styles2}>Agente de Servicio:</label>
-              <select
-                name="serviceClient_id"
-                value={formData.serviceClient_id}
-                onChange={handleInputChange}
-                className={styles}
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Agente de Servicio:</label>
+                <select
+                  name="serviceClient_id"
+                  value={formData.serviceClient_id}
+                  onChange={handleInputChange}
+                  className={styles}
+                >
+                  <option value="" disabled selected>Selecciona un Agente de Servicio</option>
+                  {serviceAgents.serviceAgent?.map((serviceClient) => (
+                    <option key={serviceClient._id} value={serviceClient._id}>
+                      {serviceClient.username}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="h-2">
+                {errors.serviceClient_id && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.serviceClient_id}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className=" items-center avant-garde-bold font-bold text-gray px-3 py-2 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
               >
-                <option value="">Selecciona un Agente de Servicio</option>
-                {serviceAgents.serviceAgent.map((serviceClient) => (
-                  <option key={serviceClient._id} value={serviceClient._id}>
-                    {serviceClient.username}
-                  </option>
-                ))}
-              </select>
+                Agregar Técnico
+              </button>
             </div>
           </div>
-
-        </form>          
-        <div className="flex justify-center ">
-            <button
-              type="submit"
-              className="avant-garde-bold font-bold text-gray px-6 py-2 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
-              >
-              Agregar Técnico
-            </button>
-          </div>
+        </form>
       </div>
     </>
   );
