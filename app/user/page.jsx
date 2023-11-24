@@ -29,7 +29,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      {user.isPaid === false ? <AlertBar /> : null}
+      {/* {user.isPaid === false ? <AlertBar /> : null} */}
 
       <Profile />
     </div>
@@ -37,7 +37,7 @@ const UserProfile = () => {
 };
 
 UserProfile.getLayout = function getLayout(page) {
-  return <UserLayout>{page}</UserLayout>;
+  return <UserLayout> {user.isPaid === false ? <AlertBar /> : null} {page}</UserLayout>;
 };
 
 export default UserProfile;

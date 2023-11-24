@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import SideBar from "@/components/sideBar";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "@/redux/slices";
+
+import { AlertBar } from "@/components";
+import { useSelector } from "react-redux";
 
 const UserLayout = ({ children }) => {
   //const dispatch = useDispatch();
@@ -20,9 +20,14 @@ const UserLayout = ({ children }) => {
   //     }
   //   }
   // }, []);
+  const oldUser = useSelector((state) => state.auth.user);
+  console.log(oldUser);
   return (
     <div className="flex h-screen mt-40 bg-white">
+      {oldUser.isPaid === false ? <AlertBar /> : null}
+
       <div style={{ background: "gray", width: "5%", position: "fixed", height: "100vh" }} className="flex items-start justify-center">
+
         <SideBar />
       </div>
       <div className="flex-1 p-4">{children}</div>

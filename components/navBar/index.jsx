@@ -55,23 +55,21 @@ const Navbar = () => {
         </div>
 
         {authPer ? (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "auto auto",
-              gap: "0.5rem",
-              alignItems: "center",
-            }}
-          >
-            <h4 className="mr-1 py-1 avant-garde-bold text-base text-Az5">
-              {user.username}
-            </h4>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "auto auto",
-              gap: "0.5rem",
-              alignItems: "center",
-            }}>
+         <div
+         style={{
+           display: "flex",
+           alignItems: "center",
+         }}
+       >
+         <h4 className="mr-1 py-1 avant-garde-bold text-base text-Az5">
+           {user.username}
+         </h4>
+         <div
+           style={{
+             display: "flex",
+             alignItems: "center",
+           }}
+         >
               <Link
                 href="/user"
                 style={{ textDecoration: "none", color: "inherit" }}
