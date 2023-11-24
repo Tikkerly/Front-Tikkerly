@@ -22,8 +22,11 @@ const closureHandleSubmit = (
         Cookies.set("token", data.token);
         Cookies.set("uid", data.user._id);
       }
-
-      router.push("/user");
+      if (data.user.rol === "Admin") {
+        router.push("/administrador")
+      } else {
+        router.push("/user");
+      }
     } catch (error) {
       setLoading(false);
       setMessage(

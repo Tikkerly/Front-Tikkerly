@@ -7,6 +7,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useSelector } from "react-redux";
 import { USER_ROUTES } from "@/routes/routes";
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TicketsView = () => {
   const id = useSelector((state) => state.auth.user._id);
@@ -44,7 +46,6 @@ const TicketsView = () => {
           },
         }
       );
-      console.log(response.data);
       setTicketsData((prevTickets) => {
         return {
           ...prevTickets,
@@ -57,18 +58,25 @@ const TicketsView = () => {
   };
 
   return (
-
-    <div className="flex flex-col items-center bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md">
-      <Link href={"/user/tickets/crear-ticket"}>
-        <div className="mb-4 bg-blue-500 text-white py-2 px-4 rounded-md">
-          Crear Ticket
-        </div>
-
-      </Link>
+    <div className="grid gap-4 w-7/8 ">
+      <div>
+        <Link
+          href="/user/tickets/crear-ticket"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <button className="avant-garde-bold font-bold text-gray px-6 py-2 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
+            <FontAwesomeIcon icon={faTicket} className="mr-2" size="lg" />
+            Crear Ticket
+          </button>
+        </Link>
+        <h1 className="flex justify-center font-black avant-garde-regular text-Az1 border-b border-dotted border-b-8 border-t-0 pb-8 ">
+          Tickets
+        </h1>
+      </div>
 
       <table className="table-auto w-full">
         <thead>
-          <tr className="bg-blue-500 text-white">
+          <tr className="bg-Az3 text-Az4 bg-opacity-70">
             <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
               Compañía
             </th>
@@ -124,7 +132,7 @@ const TicketsView = () => {
                 </td>
                 <td className="py-2 px-4 font-regular avant-garde-regular ">
                   <Link
-                    href="/user/tickets/editar"
+                    href={`/user/tickets/${tickets._id}`}
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
                     <EditNoteIcon className="text-blue-500 hover:text-blue-700" />

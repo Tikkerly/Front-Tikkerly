@@ -2,7 +2,13 @@
 import { CreateFinalClient } from "@/components";
 
 const ClientRegister = () => {
-  return <CreateFinalClient />;
+  return(
+      <div className='flex flex-col items-center justify-center'>
+  <CreateFinalClient />
+</div>
+  
+  ) 
+
 };
 
 export default ClientRegister;

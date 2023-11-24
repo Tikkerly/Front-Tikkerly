@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 const registerSubmit = (route, payload, router, disabled) => {
   return async (event) => {
+    console.log('a')
     event.preventDefault();
 
     disabled(true);

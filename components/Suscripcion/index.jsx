@@ -8,18 +8,68 @@ import { faRocket } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { SubmitButton } from "..";
 import Link from "next/link";
+import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { USER_ROUTES } from "@/routes/routes";
+
+initMercadoPago(process.env.NEXT_PUBLIC_MERCADOPAGO);
 
 const Suscripcion = () => {
-  return (
-    <div>
-      h
-      {/* <div className="flex justify-center items-center">
-        <h2 className="text-3xl font-bold text-center">
-          Debes verificar tu correo para activarte
-        </h2>
-      </div>
+  const [preferenceId, setPreferenceId] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+  const user = useSelector((state) => state.auth.user);
 
-      <div className={style.containerr}>
+  const handleClickPlan = async (e) => {
+    const plan = e.target.name;
+    if (plan === "planA") {
+      const { data } = await axios.post(`${USER_ROUTES.payment}`, {
+        username: user.username || "usuario tykkera",
+        price: 25000,
+        quantity: 1,
+      });
+      setPreferenceId(data.id);
+    }
+
+    if (plan === "planB") {
+      const { data } = await axios.post(`${USER_ROUTES.payment}`, {
+        username: user.username || "usuario tykkera",
+        price: 50000,
+        quantity: 1,
+      });
+      setPreferenceId(data.id);
+    }
+
+    if (plan === "planC") {
+      const { data } = await axios.post(`${USER_ROUTES.payment}`, {
+        username: user.username || "usuario tykkera",
+        price: 100000,
+        quantity: 1,
+      });
+      setPreferenceId(data.id);
+    }
+  };
+
+  const handleOnReady = () => {
+    setIsReady(true);
+  };
+
+  const renderCheckoutButton = (preferenceId) => {
+    if (!preferenceId) return null;
+
+    return (
+      <Wallet
+        initialization={{ preferenceId: preferenceId }}
+        onReady={handleOnReady}
+      />
+    );
+  };
+
+  return (
+    <div className={style.containerr}>
+      <div>
         <div className={style.columnn}>
           <div className={style.titlee}>
             <FontAwesomeIcon icon={faPaperPlane} className={style.icon} />
@@ -27,7 +77,7 @@ const Suscripcion = () => {
           </div>
           <div className={style.pricee}>
             <h4 className={style.priceh4}>
-              $<span className={style.priceSpan}>25</span>
+              $<span className={style.priceSpan}>25.000</span>
             </h4>
           </div>
           <div className={style.optionn}>
@@ -62,7 +112,9 @@ const Suscripcion = () => {
               </li>
             </ul>
           </div>
-          <a href="">Obtener</a>
+          <button name="planA" onClick={handleClickPlan}>
+            Obtener
+          </button>
         </div>
         <div className={style.columnn}>
           <div className={style.titlee}>
@@ -75,7 +127,7 @@ const Suscripcion = () => {
           </div>
           <div className={style.pricee}>
             <h4 className={style.priceh4}>
-              $<span className={style.priceSpan}>50</span>
+              $<span className={style.priceSpan}>50.000</span>
             </h4>
           </div>
           <div className={style.optionn}>
@@ -110,7 +162,9 @@ const Suscripcion = () => {
               </li>
             </ul>
           </div>
-          <a href="">Obtener</a>
+          <button name="planB" onClick={handleClickPlan}>
+            Obtener
+          </button>
         </div>
         <div className={style.columnn}>
           <div className={style.titlee}>
@@ -119,7 +173,7 @@ const Suscripcion = () => {
           </div>
           <div className={style.pricee}>
             <h4 className={style.priceh4}>
-              $<span className={style.priceSpan}>100</span>
+              $<span className={style.priceSpan}>100.000</span>
             </h4>
           </div>
           <div className={style.optionn}>
@@ -154,16 +208,15 @@ const Suscripcion = () => {
               </li>
             </ul>
           </div>
-          <a href="">Obtener</a>
+          <button name="planC" onClick={handleClickPlan}>
+            Obtener
+          </button>
         </div>
-
-        <Link
-          href="/ingresar"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <SubmitButton text="Omitir Proceso de pago" />
-        </Link>
-      </div> */}
+      </div>
+      {renderCheckoutButton(preferenceId)}
+      <Link href="/user" style={{ textDecoration: "none", color: "inherit" }}>
+        <SubmitButton text={"Omitir Proceso de pago"} />
+      </Link>
     </div>
   );
 };

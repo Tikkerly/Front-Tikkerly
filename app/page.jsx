@@ -11,7 +11,7 @@ import Providers from "@/redux/provider";
 
 const Home = () => {
   return (
-    <div className="relative mx-auto flex flex-col overflow-hidden h-full justify-around items-center bg-pattern">
+    <div className="relative mx-auto flex flex-col overflow-hidden h-full justify-around items-center bg-gray-150">
       <Description />
       <CarrouselServices />
       <ContactButton />

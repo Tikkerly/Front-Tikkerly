@@ -8,7 +8,7 @@ const ContactButton = () => {
   return (
     <div className="text-center h-40 flex items-center bg-red m-10">
       <div>
-        <h2 className="text-4xl relative mb-4 text-gray-100 text-2xl font-regular avant-garde-regular">
+        <h2 className="text-4xl relative mb-4 text-Az1 text-2xl font-regular avant-garde-regular">
 
           ¿Quieres saber más?
   

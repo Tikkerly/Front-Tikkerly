@@ -19,7 +19,6 @@ const Registration = () => {
     img: "",
     rol: "CLIENTE",
   });
-  console.log(formData.img);
   const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(true);
 

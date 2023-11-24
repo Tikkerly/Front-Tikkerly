@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/slices";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt   } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
   const auth = useSelector((state) => state.auth.isAuthenticated);
   const router = useRouter();
-
   const [authPer, setAuthPer] = useState(false);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className="p-4 text-gray flex flex-row items-center justify-between bg-gray-500 bg-opacity-80 fixed w-full top-0 h-20"
+        className="p-4 text-gray flex flex-row items-center justify-between bg-gray-200 bg-opacity-80 fixed w-full top-0 h-20"
         style={{ zIndex: 1000 }}
       >
         <div>
@@ -53,39 +54,70 @@ const Navbar = () => {
         </div>
 
         {authPer ? (
-
-         <div style={{ display: "grid", gridTemplateColumns: "auto auto", gap: "0.5rem", alignItems: "center" }}>
-         <Link href="/user" style={{ textDecoration: "none", color: "inherit" }}>
-           <div className="mr-1 py-1 avant-garde-bold text-lg text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">
-             <FontAwesomeIcon icon={faUser} style={{ fontSize: "1.5rem" }} />
-           </div>
-         </Link>
-       
-         <span onClick={handleClick} className="ml-1 py-1 avant-garde-bold text-lg text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">
-           <FontAwesomeIcon icon={faSignOutAlt} style={{ fontSize: "1.5rem" }} />
-         </span>
-       </div>
-
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto",
+              gap: "0.5rem",
+              alignItems: "center",
+            }}
+          >
+            <h4 className="mr-1 py-1 avant-garde-bold text-base text-Az5">
+              {user.username}
+            </h4>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto",
+              gap: "0.5rem",
+              alignItems: "center",
+            }}>
+              <Link
+                href="/user"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <div className=" text-Az2 transition duration-300 ease-in-out hover:text-Az4 hover:underline cursor-pointer">
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    style={{ fontSize: "1.5rem" }}
+                  />
+                </div>
+              </Link>
+              <span className="mx-1 avant-garde-bold text-base text-Az2">/</span>
+              <span
+                onClick={handleClick}
+                className="text-Az2 transition duration-300 ease-in-out hover:text-Az4 hover:underline cursor-pointer"
+              >
+                <FontAwesomeIcon
+                  icon={faSignOutAlt}
+                  style={{ fontSize: "1.5rem" }}
+                />
+              </span>
+            </div>
+          </div>
         ) : (
           <div className="flex items-center">
             <Link
               href="/ingresar"
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <span className="mr-1 py-1 avant-garde-bold text-base text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">
-                Ingresar
-              </span>
+              <FontAwesomeIcon
+                icon={faRightFromBracket}
+                className="text-Az2 transition duration-300 ease-in-out hover:text-Az4 hover:underline cursor-pointer"
+                size="lg"
+              />
             </Link>
 
-            <span className="mx-1 avant-garde-bold text-base text-Az5">/</span>
+            <span className="mx-1 avant-garde-bold text-base text-Az2">/</span>
 
             <Link
               href="/registrarse"
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <span className="ml-1 py-1 avant-garde-bold text-base text-Az5 transition duration-300 ease-in-out hover:text-Az1 hover:underline cursor-pointer">
-                Registrarse
-              </span>
+              <FontAwesomeIcon
+                icon={faAddressCard}
+                className="ml-1 py-1  text-Az2 transition duration-300 ease-in-out hover:text-Az4 hover:underline cursor-pointer"
+                size="lg"
+              />
             </Link>
           </div>
         )}

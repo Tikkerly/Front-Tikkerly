@@ -4,7 +4,7 @@ import UsersViews from '@/containers/UsersView';
 
 const adminUsers = () => {
   return (
-    <div className='h-screen w-screen p-8 ml-8'>
+    <div className='flex flex-col items-center justify-center'>
       <UsersViews />
     </div>
   );

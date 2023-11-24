@@ -137,13 +137,15 @@ const UsersView = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md ">
+    <div className="w-5/6 flex flex-col justify-center items-center bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md gap-4">
       <div className="w-full">
-        <h2>Lista de Usarios</h2>
+        <h1 className="flex justify-center font-black avant-garde-regular text-Az1 border-b border-dotted border-b-8 border-t-0 pb-2 ">
+          Lista de Usarios
+          </h1>
       </div>
       <table className="table-auto w-full">
         <thead>
-          <tr className="bg-Az2">
+          <tr className="bg-Az3 text-Az4 bg-opacity-70">
             <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
               Id
             </th>

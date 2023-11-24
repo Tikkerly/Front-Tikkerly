@@ -20,7 +20,14 @@ const Description = () => {
               <div className="aurora__item bg-blue-400"></div>
               <div className="aurora__item bg-gray-800"></div>
             </div>
-            <p className="subtitle text-2xl text-Az3">
+            <p
+              className="subtitle text-3xl text-Az2"
+              style={{
+                WebkitTextStroke: "0.5px black", // Para navegadores basados en WebKit como Chrome y Safari
+                textStroke: "1px black", // Propiedad estándar
+                display: "inline-block", // Para que el borde no se extienda más allá de cada letra
+              }}
+            >
               Simplificando lo complejo a un ticket
             </p>
           </div>

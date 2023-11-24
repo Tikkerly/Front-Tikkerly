@@ -56,8 +56,6 @@ const FormUtils = () => {
       rol: formData.rol,
     };
 
-    console.log(user)
-
     setFormData({
       username: "",
       email: "",
@@ -74,7 +72,6 @@ const FormUtils = () => {
           "x-token": Cookie.get("token"),
         },
       });
-      console.log(data)
       Swal.fire({
         position: "top-end",
         icon: "success",

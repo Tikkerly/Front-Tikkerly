@@ -2,13 +2,13 @@
 
 .faqItemContainer {
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid #dddada;
+    border-bottom: 1px solid #818080;
   }
   
   .question {
     font-weight: bold;
     font-size: 1.2rem; 
-    color: #dddada;
+    color: #00356f;
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
     font-size: 0.85rem;
     max-height: 0;
     overflow: hidden;
-    color: #dddada;
+    color: #243244;
     transition: max-height 1.5s ease;
     width: 450px;
   }
@@ -43,8 +43,9 @@
     transition: max-height 1.5s ease;
   }
   .background {
-    background: rgba(0, 0, 0, 0.26);
-    width: 100vw; 
+    background: rgba(134, 130, 130, 0.26);
+    width: 70vw; 
+    border-radius: 10px;
   }
   
 
@@ -63,13 +64,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #dddada;
+    color: #20b6ea;
     font-size: 1.875rem;
     font-weight: bold;
   }
   
   .titleText {
-    border-bottom: 2px solid #7986cb;
+    border-bottom: 2px solid #bcbcbc;
     padding-bottom: 4px;
   }
   

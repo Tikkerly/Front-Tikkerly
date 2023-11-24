@@ -1,6 +1,9 @@
 "use client"
 import React, { useState, useRef } from "react";
 import styles from "./Questions.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
 const FAQItem = ({ pregunta, respuesta }) => {
   const [mostrarRespuesta, setMostrarRespuesta] = useState(false);
@@ -26,7 +29,16 @@ const FAQItem = ({ pregunta, respuesta }) => {
           className={`font-bold avant-garde-bold ${styles.icon} ${mostrarRespuesta ? styles.iconActive : ""}`}
           onClick={toggleRespuesta}
         >
-          {mostrarRespuesta ? "-" : "+"}
+          {mostrarRespuesta ?              
+           <FontAwesomeIcon
+                icon={faCircleMinus}
+                className="ml-1 py-1  text-Az2 transition duration-300 ease-in-out hover:text-Az4 hover:underline cursor-pointer"
+                
+              /> 
+              :
+              <FontAwesomeIcon
+              icon={faCirclePlus}
+            />}
         </span>
       </h1>
       <div

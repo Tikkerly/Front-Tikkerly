@@ -81,7 +81,7 @@
   border-bottom: none;
 }
 
-.columnn a {
+.columnn button {
   transition: transform 0.5s ease-in-out;
   text-decoration: none;
   padding: 10px 40px;

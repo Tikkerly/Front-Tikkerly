@@ -5,8 +5,16 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { USER_ROUTES } from "@/routes/routes";
 import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPersonWalkingArrowLoopLeft } from "@fortawesome/free-solid-svg-icons";
+import { validation } from "@/utils";
+import Link from "next/link";
 
 const CreateFinalClient = () => {
+  const styles =
+    "font-regular avant-garde-regular w-full px-8 py-1.5 text-lg text-Az4 leading-tight bg-gray-200 border rounded focus:outline-none focus:shadow-outline";
+  const styles2 = "font-black avant-garde-regular text-Az1 text-lg";
+  const styles3 = "flex flex-col";
   const token = Cookies.get("token");
   const [agentes, setAgentes] = useState([]);
 
@@ -16,8 +24,6 @@ const CreateFinalClient = () => {
   useEffect(() => {
     setAgentes(serviceAgents);
   }, []);
-
-  console.log(agentes);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -30,12 +36,15 @@ const CreateFinalClient = () => {
     serviceClient_id: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    setErrors(validation("finalClient", { ...formData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -85,119 +94,189 @@ const CreateFinalClient = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-        <h2 className="text-3xl font-bold text-center">Crear Cliente</h2>
+      <div className="grid gap-4 w-5/6 bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md gap-4 ">
+        <div>
+          <Link
+            href="/user/administrar-usuarios"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button className="avant-garde-bold font-bold text-gray px-6 py-2 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
+              <FontAwesomeIcon
+                icon={faPersonWalkingArrowLoopLeft}
+                className="mr-2"
+                size="lg"
+              />
+              Volver
+            </button>
+          </Link>
+          <h1 className="flex justify-center font-black avant-garde-regular text-Az1 border-b border-dotted border-b-8 border-t-0 pb-8 ">
+            Agregar Cliente Final
+          </h1>
+        </div>
+        <form onSubmit={handleSubmit} className="grid gap-4 space-y-6">
+          <div className="grid grid-cols-2 gap-8 ">
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Nombre:</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.username && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.username}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Correo:</label>
+                <input
+                  type="text"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.email && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Tipo de Documento:</label>
+                <select
+                  name="documentType"
+                  value={formData.documentType}
+                  onChange={handleInputChange}
+                  className={styles}
+                >
+                  <option value="" disabled selected>Tipo de Documento</option>
+                  <option value="NIT">NIT</option>
+                  <option value="DNI">DNI</option>
+                  <option value="PASAPORTE">PASAPORTE</option>
+                </select>
+              </div>
+              <div className="h-2">
+                {errors.documentType && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.documentType}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Documento:</label>
+                <input
+                  type="text"
+                  name="document"
+                  value={formData.document}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.document && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.document}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Teléfono:</label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.phone && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.phone}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Dirección:</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
+              <div className="h-2">
+                {errors.address && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.address}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Agente de Servicio:</label>
+                <select
+                  name="serviceClient_id"
+                  value={formData.serviceClient_id}
+                  onChange={handleInputChange}
+                  className={styles}
+                >
+                  <option value="" disabled selected>Selecciona un Agente de Servicio</option>
+                  {agentes.serviceAgent &&
+                    agentes.serviceAgent.map((serviceClient) => (
+                      <option key={serviceClient._id} value={serviceClient._id}>
+                        {serviceClient.username}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="h-2">
+                {errors.serviceClient_id && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.serviceClient_id}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-center py-1">
+              <button
+                type="submit"
+                className=" items-center avant-garde-bold font-bold text-gray px-3 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
+              >
+                Agregar Cliente Final
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-md space-y-6">
-        <div className="grid grid-cols-1 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-800">
-              Nombre:
-            </label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-800">
-              Correo:
-            </label>
-            <input
-              type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-800">
-              Tipo de Documento:
-            </label>
-            <input
-              type="text"
-              name="documentType"
-              value={formData.documentType}
-              onChange={handleInputChange}
-              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-800">
-              Documento:
-            </label>
-            <input
-              type="text"
-              name="document"
-              value={formData.document}
-              onChange={handleInputChange}
-              className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-800">
-            Teléfono:
-          </label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-800">
-            Dirección:
-          </label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-white">
-            Agente de Servicio:
-          </label>
-          <select
-            name="serviceClient_id"
-            value={formData.serviceClient_id}
-            onChange={handleInputChange}
-            className="mt-4 text-white block w-full py-2 px-3 border border-gray-300 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          >
-            <option value="">Selecciona un Agente de Servicio</option>
-            {agentes.serviceAgent &&
-              agentes.serviceAgent.map((serviceClient) => (
-                <option key={serviceClient._id} value={serviceClient._id}>
-                  {serviceClient.username}
-                </option>
-              ))}
-          </select>
-        </div>
-
-        <div>
-          <button
-            type="submit"
-            className=" mt-4 avant-garde-bold font-bold text-gray px-6 py-3 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
-          >
-            Crear Cliente Final
-          </button>
-        </div>
-      </form>
     </>
   );
 };

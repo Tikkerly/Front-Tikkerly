@@ -18,7 +18,8 @@ const RegisterForm = () => {
     confirmPassword: "",
     personType: "",
     phone: "",
-    nit: "",
+    document: "",
+    documentType: "",
     img: null,
     address: "",
   });
@@ -36,7 +37,6 @@ const RegisterForm = () => {
     setErrors(
       validation("register", { ...formData, [e.target.name]: e.target.value })
     );
-    console.log(errors.address);
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const props = Object.keys(
@@ -55,7 +55,8 @@ const RegisterForm = () => {
     password: formData.password,
     personType: formData.personType,
     phone: formData.phone,
-    nit: formData.nit,
+    document: formData.document,
+    documentType: formData.documentType,
     img: formData.img,
     address: formData.address,
   };
@@ -66,6 +67,7 @@ const RegisterForm = () => {
     router,
     setDisabled
   );
+  console.log(formData);
 
   return (
     <form
@@ -149,19 +151,40 @@ const RegisterForm = () => {
         </div>
 
         <div className="flex items-center gap-2 flex-col ">
+          <select
+            name="documentType"
+            value={formData.documentType}
+            onChange={handleChange}
+            className="bg-Be p-2 outline-none focus:ring-2 w-auto h-auto focus:ring-blue-600 text-gray-800 rounded-lg font-regular avant-garde-regular"
+          >
+            <option value="TipoDeDocumento">Tipo de documento</option>
+            <option value="NIT">NIT</option>
+            <option value="DNI">DNI</option>
+            <option value="PASAPORTE">PASAPORTE</option>
+          </select>
+          <div className="h-2">
+            {errors.documentType && (
+              <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                {errors.documentType}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 flex-col ">
           <FormInputs
             label={"Identificación:"}
             className="p-2"
             placeholder={"Numero de identificacion"}
-            name={"nit"}
-            value={formData.nit}
+            name={"document"}
+            value={formData.document}
             onChange={handleChange}
             type={"text"}
           />
           <div className="h-2">
-            {errors.nit && (
+            {errors.document && (
               <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                {errors.nit}
+                {errors.document}
               </p>
             )}
           </div>
