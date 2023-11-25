@@ -7,12 +7,12 @@ import {
   faTicketAlt,
   faCalendarAlt,
   faUserPlus,
+  faFileSignature,
 } from "@fortawesome/free-solid-svg-icons";
-
 
 const SideBar = () => {
   const route = usePathname();
-  const isNotOnPageAuth = !(route === "/tickets/id" );
+  const isNotOnPageAuth = !(route === "/tickets/id");
 
   if (!isNotOnPageAuth) {
     return <></>;
@@ -44,12 +44,13 @@ const SideBar = () => {
         </button>
       </Link>
 
-
-  
-
-
+      <Link href="/user/reportes">
+        <button className="mt-4 text-white text-3xl ml-5 rounded-md items-center">
+          <FontAwesomeIcon icon={faFileSignature} className="mr-10" />
+        </button>
+      </Link>
     </div>
   );
 };
 
-export default SideBar
+export default SideBar;

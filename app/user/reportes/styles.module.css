@@ -1,0 +1,15 @@
+.checks {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+
+  margin-bottom: 30px;
+}
+.check {
+  display: flex;
+  gap: 10px;
+}
