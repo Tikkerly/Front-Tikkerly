@@ -68,8 +68,8 @@ const Suscripcion = () => {
   };
 
   return (
-    <div className={style.containerr}>
-      <div>
+    <div className={style.buttonsH}>
+      <div className={style.containerr}>
         <div className={style.columnn}>
           <div className={style.titlee}>
             <FontAwesomeIcon icon={faPaperPlane} className={style.icon} />
@@ -213,10 +213,12 @@ const Suscripcion = () => {
           </button>
         </div>
       </div>
-      {renderCheckoutButton(preferenceId)}
-      <Link href="/user" style={{ textDecoration: "none", color: "inherit" }}>
-        <SubmitButton text={"Omitir Proceso de pago"} />
-      </Link>
+      <div className="flex flex-col justify-center items-center">
+        {renderCheckoutButton(preferenceId)}
+        <Link href="/user" style={{ textDecoration: "none", color: "inherit" }}>
+          <SubmitButton text={"Omitir Proceso de pago"} />
+        </Link>
+      </div>
     </div>
   );
 };
