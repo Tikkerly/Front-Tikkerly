@@ -163,11 +163,13 @@ const UsersViews = () => {
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="flex avant-garde-bold font-bold text-gray px-6 py-2 rounded-full justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
+
                 <FontAwesomeIcon
                   icon={faPlus}
                   className="mr-2"
                   size="lg"
                 />
+
                 Agregar
               </button>
             </Link>
@@ -247,11 +249,13 @@ const UsersViews = () => {
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="flex avant-garde-bold font-bold text-gray px-6 py-2 rounded-full justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
+
                 <FontAwesomeIcon
                   icon={faPlus}
                   className="mr-2"
                   size="lg"
                 />
+
                 Agregar
               </button>
             </Link>
@@ -331,11 +335,13 @@ const UsersViews = () => {
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="flex avant-garde-bold font-bold text-gray px-6 py-2 rounded-full justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
+
                 <FontAwesomeIcon
                   icon={faPlus}
                   className="mr-2"
                   size="lg"
                 />
+
                 Agregar
               </button>
             </Link>

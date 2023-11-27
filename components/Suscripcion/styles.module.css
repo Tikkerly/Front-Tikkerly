@@ -1,9 +1,14 @@
+.buttonsH {
+  display: flex;
+  flex-direction: column;
+}
+
 .containerr {
   width: 960px;
   margin: 100px auto;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 16px;
 }
