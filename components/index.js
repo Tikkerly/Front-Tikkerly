@@ -26,4 +26,9 @@ export { default as CreateTechnician } from "./createTechnician/index.jsx";
 export { default as CreateFinalClient } from "./createFinalClient/index.jsx";
 export { default as PaymentView } from "./paymentPlans/index.jsx";
 export { default as AlertBar } from "./alertBar/index.jsx";
-export {default as Suscripcion} from "./Suscripcion/index.jsx";
+export { default as Suscripcion } from "./Suscripcion/index.jsx";
+export { default as TechnicianSelect } from './TechnicianSelect/index.jsx'
+export { default as TechnicianDetail } from './technicianDetail/index.jsx'
+export { default as CalendarTickets } from './CalendarTickets/index.jsx'
+export { default as TicketDetailCalendar } from './TicketDetailCalendar'
+export { default as UserDetail} from './userDetail'

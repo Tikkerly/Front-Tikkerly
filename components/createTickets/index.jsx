@@ -8,6 +8,7 @@ import { validation } from "@/utils";
 import { faPersonWalkingArrowLoopLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import axios from 'axios'
 
 const CreateTickect = () => {
   const styles =
@@ -16,29 +17,20 @@ const CreateTickect = () => {
   const styles3 = "flex flex-col";
 
   const token = Cookies.get("token");
+  const { _id } = useSelector(state => state.auth.user)
 
   const serviceAgents = useSelector((state) => state.options.serviceAgents);
   const technicians = useSelector((state) => state.options.technicians);
   const finalClients = useSelector((state) => state.options.finalClients);
-  const company = useSelector((state) => state.auth.user);
 
-  const [sa, setSa] = useState(serviceAgents);
-  const [tec, setTec] = useState(technicians);
-  const [fc, setFc] = useState(finalClients);
-  const [comp, setComp] = useState(company);
-
-  useEffect(() => {
-    setSa(serviceAgents);
-    setTec(technicians);
-    setFc(finalClients);
-    setComp(comp);
-  }, []);
-
+  const [sa, setSa] = useState([]);
+  const [tec, setTec] = useState([]);
+  const [fc, setFc] = useState([]);
   const [formData, setFormData] = useState({
     serviceType: "",
     serviceDescription: "",
     startDate: "",
-    company_id: comp._id,
+    company_id: _id,
     technician_id: "",
     finalClient_id: "",
     serviceClient_id: "",
@@ -48,8 +40,15 @@ const CreateTickect = () => {
     others: 0,
     registerDate: "11/10/2010",
     ticketStatus: "Pendiente",
-    companies: [],
   });
+
+  useEffect(() => {
+    setSa(serviceAgents);
+    setTec(technicians);
+    setFc(finalClients);
+  }, []);
+
+
 
   const [errors, setErrors] = useState({});
 
@@ -59,82 +58,30 @@ const CreateTickect = () => {
       ...prevData,
       [name]: value,
     }));
-
-    console.log(formData);
     setErrors(validation("ticket", { ...formData, [name]: value }));
-  };
-
-  const handleAddCompany = () => {
-    const companyInput = document.getElementsByName("company")[0];
-    const newCompany = companyInput.value;
-    if (!newCompany || newCompany.trim() === "") {
-      return;
-    }
-    setFormData((prevData) => ({
-      ...prevData,
-      companies: [...prevData.companies, newCompany],
-    }));
-    companyInput.value = "";
-  };
-
-  const handleRemoveCompany = (index) => {
-    setFormData((prevData) => {
-      const updatedCompanies = [...prevData.companies];
-      updatedCompanies.splice(index, 1);
-      return {
-        ...prevData,
-        companies: updatedCompanies,
-      };
-    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch(
+      const { data } = await axios.post(
         `${USER_ROUTES.init}/tickets/registerticket`,
+        formData,
         {
-          method: "POST",
-
           headers: {
-            "Content-Type": "application/json",
-            "x-token": token,
-          },
-          body: JSON.stringify(formData),
+            "x-token": token
+          }
         }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        setFormData({
-          serviceType: "",
-          serviceDescription: "",
-          startDate: "",
-          company_id: "",
-          technician_id: "",
-          finalClient_id: "",
-          serviceClient_id: "",
-          paymentMethod: "Transferencia",
-          ammount: 0,
-          cost: 0,
-          others: 0,
-          registerDate: "11/10/2010",
-          ticketStatus: "Pendiente",
-          companies: [],
-        });
-      } else {
-        alert("Error al registrar el ticket");
-      }
+      )
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: data.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
-      console.log(error);
+      console.log(error)
       alert("Error al procesar la solicitud:", error);
     }
   };
@@ -228,8 +175,8 @@ const CreateTickect = () => {
               <option value="" disabled>
                 Selecciona un Cliente Final
               </option>
-              {fc.finalClients &&
-                fc.finalClients.map((finalClient) => (
+              {fc &&
+                fc.map((finalClient) => (
                   <option key={finalClient._id} value={finalClient._id}>
                     {finalClient.username}
                   </option>
@@ -255,8 +202,8 @@ const CreateTickect = () => {
               <option value="" disabled>
                 Selecciona un Técnico
               </option>
-              {tec.technicians &&
-                tec.technicians.map((technician) => (
+              {tec &&
+                tec.map((technician) => (
                   <option key={technician._id} value={technician._id}>
                     {technician.username}
                   </option>
@@ -282,8 +229,8 @@ const CreateTickect = () => {
               <option value="" disabled>
                 Selecciona un Agente de Servicio
               </option>
-              {sa.serviceAgent &&
-                sa.serviceAgent.map((serviceClient) => (
+              {sa &&
+                sa.map((serviceClient) => (
                   <option key={serviceClient._id} value={serviceClient._id}>
                     {serviceClient.username}
                   </option>
@@ -352,41 +299,6 @@ const CreateTickect = () => {
               )}
             </div>
           </div>
-        </div>
-
-        <div className={styles3}>
-          <label className={styles2}>Compañías:</label>
-          <div className="flex">
-            <input
-              type="text"
-              name="company"
-              //onChange={handleInputChange}
-              className={styles}
-            />
-            <button
-              type="button"
-              onClick={handleAddCompany}
-              className="ml-2 avant-garde-bold font-bold text-gray px-4 py-2 rounded-full flex justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100"
-            >
-              Agregar
-            </button>
-          </div>
-          {formData.companies.length > 0 && (
-            <ul>
-              {formData.companies?.map((company, index) => (
-                <li key={index}>
-                  {company}
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveCompany(index)}
-                    className="ml-2 avant-garde-bold font-bold text-gray px-2 py-1 rounded-full flex justify-center bg-red-500 text-white transition duration-300 hover:bg-red-600"
-                  >
-                    X
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
 
         <div className="flex items-center justify-center">

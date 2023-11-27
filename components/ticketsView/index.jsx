@@ -58,7 +58,7 @@ const TicketsView = () => {
   };
 
   return (
-    <div className="grid gap-4 w-7/8 ">
+    <div className="grid gap-4 w-5/6 ">
       <div>
         <Link
           href="/user/tickets/crear-ticket"
@@ -99,7 +99,7 @@ const TicketsView = () => {
             <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
               Estado
             </th>
-            <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
+            <th className="py-2 px-4 font-bold avant-garde-bold">
               Acciones
             </th>
           </tr>

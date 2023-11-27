@@ -19,11 +19,14 @@ const Profile = () => {
 
   const [editable, setEditable] = useState({
     username: user.username,
+    email: user.email,
     phone: user.phone,
     address: user.address,
-    nit: user.nit,
+    document: user.document,
     image: user.image,
   });
+
+  console.log(user)
   const handleFieldChange = (edit, value) => {
     setEditable((prev) => ({
       ...prev,
@@ -93,6 +96,21 @@ const Profile = () => {
         </div>
 
         <div className="mb-4">
+          <label className={styles2}>
+            Correo
+          </label>
+          <input
+          className={styles}
+            id="email"
+            type="text"
+            value={editable.email}
+            onChange={(e) => handleFieldChange("email", e.target.value)}
+            placeholder="Correo electrónico"
+            disabled
+          />
+        </div>
+
+        <div className="mb-4">
           <label className={styles2}>Dirección</label>
           <input
           className={styles}
@@ -117,12 +135,12 @@ const Profile = () => {
         </div>
 
         <div className="mb-4">
-          <label className={styles2}>NIT</label>
+          <label className={styles2}>Documento:</label>
           <input
             className={styles}
             id="number"
             type="text"
-            value={editable.nit}
+            value={editable.document}
             onChange={(e) => handleFieldChange("nit", e.target.value)}
             placeholder="Nit"
           />

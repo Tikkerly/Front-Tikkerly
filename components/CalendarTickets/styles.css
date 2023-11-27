@@ -1,0 +1,26 @@
+.fc {
+    width: 1000px;
+}
+.fc-media-screen {width: 1000px;}
+.fc-direction-ltr {width: 1000px;}
+.fc-theme-standard{width: 1000px;}
+
+.fc-scrollgrid-section {background: rgba(83, 137, 188, 0.575); font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+.fc-scrollgrid-section-header {background: #1dbbee}
+.fc-button{
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.fc-toolbar-title{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #00356f;
+    border-bottom: 5px dotted #bcbcbc;
+    
+}
+.fc-daygrid-day-number{
+    text-decoration: none;
+    color:rgb(41, 40, 40);
+}
+.fc-event-main-frame{
+ background: #09498d;
+}
+

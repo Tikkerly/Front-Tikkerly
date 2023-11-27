@@ -1,57 +1,66 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { finalClients, serviceAgents, technicians } from "@/redux/slices";
 import axios from "axios";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import ClearIcon from "@mui/icons-material/Clear";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { USER_ROUTES } from "@/routes/routes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Swal from "sweetalert2";
 
 const UsersViews = () => {
   const [techs, setTechs] = useState([]);
   const [final, setFinal] = useState([]);
   const [agents, setAgents] = useState([]);
+  const { _id } = useSelector(state => state.auth.user)
 
   const token = Cookies.get("token");
-  const technicians = useSelector((state) => state.options.technicians);
-  const finalClients = useSelector((state) => state.options.finalClients);
-  const serviceAgents = useSelector((state) => state.options.serviceAgents);
+
+  const dispatch = useDispatch();
+
+  const servAgents = async () => {
+    const { data } = await axios.get(USER_ROUTES.getServiceAgentsById(_id), {
+      headers: {
+        "x-token": token,
+      },
+    });
+    dispatch(serviceAgents(data.serviceAgent));
+    setAgents(data.serviceAgent);
+  };
+  const technis = async () => {
+    const { data } = await axios.get(USER_ROUTES.getTechniciansById(_id), {
+      headers: {
+        "x-token": token,
+      },
+    });
+    dispatch(technicians(data.technicians));
+    setTechs(data.technicians);
+  };
+  const finalCli = async () => {
+    const { data } = await axios.get(USER_ROUTES.getFinalClientsById(_id), {
+      headers: {
+        "x-token": token,
+      },
+    });
+    dispatch(finalClients(data.finalClients));
+    setFinal(data.finalClients);
+  };
 
   useEffect(() => {
-    setTechs(technicians);
-    setFinal(finalClients);
-    setAgents(serviceAgents);
+    servAgents();
+    technis();
+    finalCli();
   }, []);
 
-  const [userData, setUserData] = useState({
-    total: 0,
-    users: [],
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${USER_ROUTES.init}/user`, {
-          headers: {
-            "x-token": token,
-          },
-        });
-        setUserData(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleUsersDelete = async (userId) => {
+  const handleAgentDelete = async (userId) => {
     try {
       const response = await axios.delete(
         `${USER_ROUTES.init}/user/deleteuser/${userId}`,
+        null,
         {
           headers: {
             "x-token": token,
@@ -64,7 +73,75 @@ const UsersViews = () => {
           users: prevUserData.users.filter((user) => user._id !== userId),
         };
       });
-      alert("Usuario eliminado");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Agente Baneado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      setState(!state);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleTechDelete = async (userId) => {
+    try {
+      const response = await axios.post(
+        `${USER_ROUTES.init}/technician/deletetechnician/${userId}`,
+        null,
+        {
+          headers: {
+            "x-token": token,
+          },
+        }
+      );
+      setUserData((prevUserData) => {
+        return {
+          ...prevUserData,
+          users: prevUserData.users.filter((user) => user._id !== userId),
+        };
+      });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Técnico Baneado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      setState(!state);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleFinalDelete = async (userId) => {
+    try {
+      const response = await axios.post(
+        `${USER_ROUTES.init}/finalclient/deletefinalclient/${userId}`,
+        null,
+        {
+          headers: {
+            "x-token": token,
+          },
+        }
+      );
+      setUserData((prevUserData) => {
+        return {
+          ...prevUserData,
+          users: prevUserData.users.filter((user) => user._id !== userId),
+        };
+      });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Cliente Baneado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      setState(!state);
     } catch (error) {
       console.log(error);
     }
@@ -72,75 +149,6 @@ const UsersViews = () => {
 
   return (
     <div className="flex flex-col items-center bg-gray-100 bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md gap-4">
-      <div className="flex flex-col items-center bg-Be bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md w-full">
-        <h1 className="flex justify-center font-black avant-garde-regular text-Az1 border-dotted border-b-8 border-t-0 pb-2 w-full ">
-          COMPAÑÍAS
-        </h1>
-
-        <div className="overflow-x-auto w-full">
-          <table className="table-auto w-full mb-4">
-            <thead>
-              <tr className="bg-Az3 text-Az4 bg-opacity-70">
-                <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
-                  Compañía
-                </th>
-                <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
-                  NIT
-                </th>
-                <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
-                  Email
-                </th>
-                <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
-                  Teléfono
-                </th>
-                <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
-                  Tipo de Persona
-                </th>
-                <th className="py-2 px-4 font-bold avant-garde-bold border-l border-r">
-                  Estado del Pago
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {userData.map &&
-                userData.users.map((user, index) => (
-                  <tr key={index}>
-                    <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {user.username}
-                    </td>
-                    <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {user.nit}
-                    </td>
-                    <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {user.email}
-                    </td>
-                    <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {user.phone}
-                    </td>
-                    <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {user.personType}
-                    </td>
-                    <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {user.isPaid ? "Contratado" : "No Contrató"}
-                    </td>
-                    <td className="py-2 px-4 font-regular avant-garde-regular ">
-                      <Link
-                        href="/user/edituser/:id"
-                        style={{ textDecoration: "none", color: "inherit" }}
-                      >
-                        <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
-                      </Link>
-                      <ClearIcon
-                        className="text-red-500 hover:text-red-700"
-                        onClick={() => handleUsersDelete(user._id)}
-                      />
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
       <div className="flex flex-col items-center bg-Be bg-opacity-60 p-8 text-gray-900 rounded-lg shadow-md w-full">
         <div className="flex flex-row-reverse justify-between w-full border-dotted border-b-8 border-t-0 mb-2">
           <div className="w-full"></div>
@@ -151,15 +159,17 @@ const UsersViews = () => {
           </div>
           <div className=" flex items-center w-full">
             <Link
-              href="/user/administrar-usuarios/agregar-agente-de-servicio"
+              href="/user/administrar-usuarios/agente-de-servicio"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="flex avant-garde-bold font-bold text-gray px-6 py-2 rounded-full justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
-              <FontAwesomeIcon
-                icon={faPlus}
-                className="mr-2"
-                size="lg"
-              />
+
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className="mr-2"
+                  size="lg"
+                />
+
                 Agregar
               </button>
             </Link>
@@ -188,8 +198,8 @@ const UsersViews = () => {
               </tr>
             </thead>
             <tbody>
-              {agents.serviceAgent &&
-                agents.serviceAgent.map((serviceAgent, index) => (
+              {agents &&
+                agents.map((serviceAgent, index) => (
                   <tr key={index}>
                     <td className="py-2 px-4 font-regular avant-garde-regular border">
                       {serviceAgent.username}
@@ -204,18 +214,18 @@ const UsersViews = () => {
                       {serviceAgent.phone}
                     </td>
                     <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {serviceAgent.status ? "Activo" : "No Activo"}
+                      {serviceAgent.banned ? "No Activo" : "Activo"}
                     </td>
                     <td className="py-2 px-4 font-regular avant-garde-regular ">
                       <Link
-                        href="/user/edituser/:id"
+                        href={`/user/administrar-usuarios/agente-de-servicio/${serviceAgent._id}`}
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
                         <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
                       </Link>
                       <ClearIcon
                         className="text-red-500 hover:text-red-700"
-                        onClick={() => handleTicketDelete(ticket.id)}
+                        onClick={() => handleAgentDelete(serviceAgent._id)}
                       />
                     </td>
                   </tr>
@@ -235,15 +245,17 @@ const UsersViews = () => {
 
           <div className=" flex items-center w-full">
             <Link
-              href="/user/administrar-usuarios/agregar-tecnico"
+              href="/user/administrar-usuarios/tecnico"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="flex avant-garde-bold font-bold text-gray px-6 py-2 rounded-full justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
-              <FontAwesomeIcon
-                icon={faPlus}
-                className="mr-2"
-                size="lg"
-              />
+
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className="mr-2"
+                  size="lg"
+                />
+
                 Agregar
               </button>
             </Link>
@@ -272,8 +284,8 @@ const UsersViews = () => {
               </tr>
             </thead>
             <tbody>
-              {techs.technicians &&
-                techs.technicians.map((technicians, index) => (
+              {techs &&
+                techs.map((technicians, index) => (
                   <tr key={index}>
                     <td className="py-2 px-4 font-regular avant-garde-regular border">
                       {technicians.username}
@@ -288,18 +300,18 @@ const UsersViews = () => {
                       {technicians.phone}
                     </td>
                     <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {technicians.status ? "Activo" : "No Activo"}
+                      {technicians.banned ? "No Activo" : "Activo"}
                     </td>
                     <td className="py-2 px-4 font-regular avant-garde-regular ">
                       <Link
-                        href="/user/edituser/:id"
+                        href={`/user/administrar-usuarios/tecnico/${technicians._id}`}
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
                         <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
                       </Link>
                       <ClearIcon
                         className="text-red-500 hover:text-red-700"
-                        onClick={() => handleTicketDelete(ticket.id)}
+                        onClick={() => handleTechDelete(technicians._id)}
                       />
                     </td>
                   </tr>
@@ -319,15 +331,17 @@ const UsersViews = () => {
 
           <div className=" flex items-center w-full">
             <Link
-              href="/user/administrar-usuarios/agregar-cliente"
+              href="/user/administrar-usuarios/cliente-final"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="flex avant-garde-bold font-bold text-gray px-6 py-2 rounded-full justify-center bg-Az3 shadow-xl bg-opacity-70 transition duration-300 hover:bg-opacity-100">
-              <FontAwesomeIcon
-                icon={faPlus}
-                className="mr-2"
-                size="lg"
-              />
+
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className="mr-2"
+                  size="lg"
+                />
+
                 Agregar
               </button>
             </Link>
@@ -356,8 +370,8 @@ const UsersViews = () => {
               </tr>
             </thead>
             <tbody>
-              {final.finalClients &&
-                final.finalClients.map((finalClients, index) => (
+              {final &&
+                final.map((finalClients, index) => (
                   <tr key={index}>
                     <td className="py-2 px-4 font-regular avant-garde-regular border">
                       {finalClients.username}
@@ -372,18 +386,18 @@ const UsersViews = () => {
                       {finalClients.phone}
                     </td>
                     <td className="py-2 px-4 font-regular avant-garde-regular border">
-                      {finalClients.status ? "Activo" : "No Activo"}
+                      {finalClients.banned ? "No Activo" : "Activo"}
                     </td>
                     <td className="py-2 px-4 font-regular avant-garde-regular ">
                       <Link
-                        href="/user/edituser/:id"
+                        href={`/user/administrar-usuarios/cliente-final/${finalClients._id}`}
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
                         <EditNoteIcon className="text-blue-500 hover:text-blue-700" />
                       </Link>
                       <ClearIcon
                         className="text-red-500 hover:text-red-700"
-                        onClick={() => handleTicketDelete(ticket.id)}
+                        onClick={() => handleFinalDelete(finalClients._id)}
                       />
                     </td>
                   </tr>

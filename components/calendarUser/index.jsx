@@ -9,6 +9,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 export default class CalendarUser {
     constructor(container) {
         this.calendar = new Calendar(container, {
+            
             plugins: [
                 resourceTimelinePlugin,
                 dayGridPlugin,

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -18,8 +18,16 @@ const CreateTechnician = () => {
   const token = Cookies.get("token");
   const router = useRouter();
 
+  const [agents, setAgents] = useState([]);
+  const [compani, setCompany] = useState({});
+
   const serviceAgents = useSelector((state) => state.options.serviceAgents);
   const company = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    setAgents(serviceAgents);
+    setCompany(company);
+  }, []);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -72,7 +80,7 @@ const CreateTechnician = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/user/administrar-usuarios");
+        //router.push("/user/administrar-usuarios");
         setFormData({
           username: "",
           email: "",
@@ -149,16 +157,15 @@ const CreateTechnician = () => {
                   onChange={handleInputChange}
                   className={styles}
                 />
-              </div>            
+              </div>
               <div>
-              {errors.email && (
-                <p className="text-red-500 font-regular avant-garde-regular text-sm">
-                  {errors.email}
-                </p>
-              )}
+                {errors.email && (
+                  <p className="text-red-500 font-regular avant-garde-regular text-sm">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
             </div>
-            </div>
-
 
             <div>
               <div className={styles3}>
@@ -252,7 +259,9 @@ const CreateTechnician = () => {
                   onChange={handleInputChange}
                   className={styles}
                 >
-                  <option value="" disabled selected>Método de pago</option>
+                  <option value="" disabled selected>
+                    Método de pago
+                  </option>
                   <option value="Efectivo">Efectivo</option>
                   <option value="Transferencia">Transferencia</option>
                 </select>
@@ -287,18 +296,17 @@ const CreateTechnician = () => {
                 )}
               </div>
             </div>
-              <div> 
-            <div className={styles3}>
-              <label className={styles2}>
-                Tipo de Servicio:
-              </label>
-              <input
-                type="text"
-                name="serviceTypes"
-                value={formData.serviceTypes}
-                onChange={handleInputChange}
-                className={styles}              />                    
-                  </div>
+            <div>
+              <div className={styles3}>
+                <label className={styles2}>Tipo de Servicio:</label>
+                <input
+                  type="text"
+                  name="serviceTypes"
+                  value={formData.serviceTypes}
+                  onChange={handleInputChange}
+                  className={styles}
+                />
+              </div>
 
               <div className="h-2">
                 {errors.serviceTypes && (
@@ -318,7 +326,9 @@ const CreateTechnician = () => {
                   onChange={handleInputChange}
                   className={styles}
                 >
-                  <option value="" disabled selected>Selecciona un Agente de Servicio</option>
+                  <option value="" disabled selected>
+                    Selecciona un Agente de Servicio
+                  </option>
                   {serviceAgents.serviceAgent?.map((serviceClient) => (
                     <option key={serviceClient._id} value={serviceClient._id}>
                       {serviceClient.username}
