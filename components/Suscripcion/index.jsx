@@ -112,9 +112,11 @@ const Suscripcion = () => {
               </li>
             </ul>
           </div>
-          <button name="planA" onClick={handleClickPlan}>
+          <div className="px-8">
+          <button name="planA" onClick={handleClickPlan} className="w-full">
             Obtener
-          </button>
+          </button> 
+          </div>
         </div>
         <div className={style.columnn}>
           <div className={style.titlee}>
@@ -162,9 +164,12 @@ const Suscripcion = () => {
               </li>
             </ul>
           </div>
-          <button name="planB" onClick={handleClickPlan}>
+          <div className="px-8">
+          <button name="planB" onClick={handleClickPlan} className="w-full">
             Obtener
-          </button>
+          </button>            
+          </div>
+
         </div>
         <div className={style.columnn}>
           <div className={style.titlee}>
@@ -208,14 +213,16 @@ const Suscripcion = () => {
               </li>
             </ul>
           </div>
-          <button name="planC" onClick={handleClickPlan}>
+          <div className="px-8">
+          <button name="planC" onClick={handleClickPlan} className="w-full">
             Obtener
-          </button>
+          </button> 
+          </div>
         </div>
       </div>
       <div className="flex flex-col justify-center items-center">
         {renderCheckoutButton(preferenceId)}
-        <Link href="/user" style={{ textDecoration: "none", color: "inherit" }}>
+        <Link href="/user" style={{ textDecoration: "none", color: "inherit" }} className=" mb-20">
           <SubmitButton text={"Omitir Proceso de pago"} />
         </Link>
       </div>
